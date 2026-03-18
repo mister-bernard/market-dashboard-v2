@@ -76,7 +76,7 @@ h2{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:14
 .wmsg{font-family:'DM Mono',monospace;font-size:10px;color:var(--mu);}
 .wmsg.ok{color:var(--gr);}.wmsg.err{color:var(--rd);}
 /* WATCHLIST TABLE */
-.wlwrap{overflow-x:auto;}
+.wlwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 table.wlt{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mono',monospace;}
 .wlt th{text-align:left;color:var(--mu);padding:6px 9px;border-bottom:1px solid var(--bd);font-size:9px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;cursor:pointer;user-select:none;}
 .wlt th:hover{color:var(--tx);}
@@ -86,6 +86,16 @@ table.wlt{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mon
 .wlt td{padding:8px 9px;border-bottom:1px solid rgba(28,35,48,.6);color:#cbd5e1;white-space:nowrap;}
 .wlt tr:last-child td{border-bottom:none;}
 .wlt tr.data-row:hover td{background:rgba(255,255,255,.02);cursor:pointer;}
+/* ANALYSIS COLUMNS */
+.abadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.5px;font-weight:500;line-height:1.4;}
+.abadge.abg{background:rgba(34,197,94,.15);color:var(--gr);border:1px solid rgba(34,197,94,.25);}
+.abadge.abr{background:rgba(244,63,94,.15);color:var(--rd);border:1px solid rgba(244,63,94,.25);}
+.abadge.aby{background:rgba(251,191,36,.12);color:var(--yl);border:1px solid rgba(251,191,36,.25);}
+.abadge.abb{background:rgba(56,189,248,.12);color:var(--ac);border:1px solid rgba(56,189,248,.25);}
+.atrunc{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:middle;font-size:10px;color:#94a3b8;}
+.asr{font-family:'DM Mono',monospace;font-size:10px;color:#94a3b8;}
+.abull{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:middle;font-size:10px;color:#86efac;}
+.abear{max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:middle;font-size:10px;color:#fca5a5;}
 .tticker{font-family:'Syne',sans-serif;font-weight:800;font-size:12px;}
 .tname{color:var(--mu);font-size:10px;}
 .t-pe{color:#94a3b8;}.t-ptl{color:var(--rd);}.t-ptm{color:var(--yl);}.t-pth{color:var(--gr);}.t-earn{color:var(--ac);}
@@ -457,6 +467,13 @@ table.wlt{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mon
         <th class="sort-none" onclick="sortCol('pth')">PT High</th>
         <th class="sort-none" onclick="sortCol('earn')">Earnings</th>
         <th>Group</th>
+        <th class="sort-none" onclick="sortCol('trend')">Trend</th>
+        <th>Pattern</th>
+        <th>Resistance</th>
+        <th>Support</th>
+        <th>Bull</th>
+        <th>Bear</th>
+        <th class="sort-none" onclick="sortCol('action')">Action</th>
         <th></th>
       </tr></thead>
       <tbody id="wlbody"></tbody>
@@ -764,6 +781,7 @@ const FUND_DATA=JSON.parse(`{"PLTR":{"pe":185,"ptLow":60,"ptMid":130,"ptHigh":20
 // --- RUNTIME STATE ------------------------------------------------
 let watchlist=STOCK_DATA.map(s=>s.sym);
 let sortKey=null,sortDir='asc',expandedSym=null;
+let stockAnalysis={};
 const livePrice={...PREV_CLOSE};
 const liveChg={};
 const fundCache={};
@@ -1047,6 +1065,8 @@ function buildTable(){
       else if(sortKey==='ptm') {av=a.f.ptMid||0;bv=b.f.ptMid||0;}
       else if(sortKey==='pth') {av=a.f.ptHigh||0;bv=b.f.ptHigh||0;}
       else if(sortKey==='earn'){av=a.f.earn||'9999';bv=b.f.earn||'9999';}
+      else if(sortKey==='trend'){const to={'UPTREND':1,'BASING':2,'SIDEWAYS':2,'DOWNTREND':3};av=to[(stockAnalysis[a.sym]||{}).trend]||9;bv=to[(stockAnalysis[b.sym]||{}).trend]||9;}
+      else if(sortKey==='action'){const ao={'BUY':1,'ADD':2,'ADD ON DIPS':3,'HOLD':4,'WATCH':5,'AVOID':6,'SELL':7,'SHORT':8};av=ao[(stockAnalysis[a.sym]||{}).action]||9;bv=ao[(stockAnalysis[b.sym]||{}).action]||9;}
       if(typeof av==='string')return sortDir==='asc'?av.localeCompare(bv):bv.localeCompare(av);
       return sortDir==='asc'?av-bv:bv-av;
     });
@@ -1060,6 +1080,15 @@ function buildTable(){
     const tr=document.createElement('tr');
     tr.id=`row-${sym}`;tr.className='data-row';
     tr.onclick=(e)=>{if(!e.target.classList.contains('rmbtn'))openChart(sym);};
+    const sa=stockAnalysis[sym]||{};
+    const trendCls=sa.trend==='UPTREND'?'abg':sa.trend==='DOWNTREND'?'abr':'aby';
+    const actCls=['BUY','ADD','ADD ON DIPS'].includes(sa.action)?'abg':['SELL','AVOID','SHORT'].includes(sa.action)?'abr':sa.action==='WATCH'?'aby':sa.action?'abb':'aby';
+    const patTxt=(sa.pattern_narrative||'—').slice(0,40);
+    const patFull=sa.pattern_narrative||'';
+    const resTxt=(sa.resistance||[]).join(' / ')||'—';
+    const supTxt=(sa.support||[]).join(' / ')||'—';
+    const bullTxt=sa.bullish_case?.trigger||'—';
+    const bearTxt=sa.bearish_case?.trigger||'—';
     tr.innerHTML=`
       <td><span class="tticker ${cls}">${sym}</span>${isNew?'<span class="sig sig-new" style="font-size:8px;vertical-align:middle;margin-left:3px">NEW</span>':''}</td>
       <td><span class="tname">${item.name}</span></td>
@@ -1072,6 +1101,13 @@ function buildTable(){
       <td class="t-pth" id="tph-${sym}"><span class="spin"></span></td>
       <td class="t-earn" id="tea-${sym}"><span class="spin"></span></td>
       <td><span class="sig ${gm.c}">${gm.l}</span></td>
+      <td>${sa.trend?'<span class="abadge '+trendCls+'">'+sa.trend+'</span>':'—'}</td>
+      <td><span class="atrunc" title="${patFull.replace(/"/g,'&quot;')}">${patTxt}</span></td>
+      <td><span class="asr">${resTxt}</span></td>
+      <td><span class="asr">${supTxt}</span></td>
+      <td><span class="abull" title="${bullTxt.replace(/"/g,'&quot;')}">${bullTxt}</span></td>
+      <td><span class="abear" title="${bearTxt.replace(/"/g,'&quot;')}">${bearTxt}</span></td>
+      <td>${sa.action?'<span class="abadge '+actCls+'">'+sa.action+'</span>':'—'}</td>
       <td><button class="rmbtn" onclick="removeTicker('${sym}')">✕</button></td>
     `;
     tbody.appendChild(tr);
@@ -1097,7 +1133,7 @@ function toggleExpand(sym){
   const sigs=(item?.signals||[]).map((s,j)=>`<span class="sig ${item.sigClass[j]||'sig-neu'}">${s}</span>`).join('');
   const tr=document.createElement('tr');
   tr.id=`exp-${sym}`;tr.className='exp-row';
-  tr.innerHTML=`<td colspan="12"><div class="exp-inner">
+  tr.innerHTML=`<td colspan="19"><div class="exp-inner">
     <div class="exp-block"><h5>📋 Thesis</h5><p>${item?.thesis||item?.note||'—'}</p><div class="exp-sigs">${sigs}</div></div>
     <div class="exp-block"><h5>🚀 Catalysts</h5><p>${item?.catalysts||'—'}</p></div>
     <div class="exp-block"><h5>⚠️ Risks</h5><p>${item?.risks||'—'}</p></div>
@@ -1110,7 +1146,7 @@ function sortCol(key){
   document.querySelectorAll('.wlt th').forEach(th=>th.className='sort-none');
   if(sortKey===key){sortDir=sortDir==='asc'?'desc':'asc';}else{sortKey=key;sortDir='asc';}
   const ths=[...document.querySelectorAll('.wlt th')];
-  const cols=['sym','name','price','chg','pct','pe','ptl','ptm','pth','earn'];
+  const cols=['sym','name','price','chg','pct','pe','ptl','ptm','pth','earn','','trend','','','','','','action'];
   const idx=cols.indexOf(key);
   if(idx>=0&&ths[idx])ths[idx].className=`sort-${sortDir}`;
   buildTable();
@@ -1782,6 +1818,12 @@ function applyDailyContent(data) {
     if (data.day_trades) applyDayTrades(data.day_trades);
     if (data.unusual_flow) applyUnusualFlow(data.unusual_flow);
     if (data.top_opportunity || data.top_avoid) applyTopPicks(data.top_opportunity, data.top_avoid);
+
+    // Load stock analysis data for watchlist table columns
+    if (data.stock_analysis) {
+      stockAnalysis = data.stock_analysis;
+      buildTable(); // re-render table with analysis columns
+    }
 
     // Fresh content badge
     const old = document.getElementById('daily-content-badge');
