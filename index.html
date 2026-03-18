@@ -652,16 +652,16 @@ table.wlt{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mon
 
     <div class="chart-modal-body">
 
-      <!-- Left: TradingView chart -->
+      <!-- Left: Lightweight Charts -->
       <div class="chart-panel">
         <div class="chart-toolbar">
           <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--mu);margin-right:4px">TIMEFRAME:</span>
-          <button class="chart-tf-btn active" onclick="setTF('1d',this)">1D</button>
-          <button class="chart-tf-btn" onclick="setTF('5d',this)">5D</button>
-          <button class="chart-tf-btn" onclick="setTF('1mo',this)">1M</button>
-          <button class="chart-tf-btn" onclick="setTF('3mo',this)">3M</button>
-          <button class="chart-tf-btn" onclick="setTF('6mo',this)">6M</button>
-          <button class="chart-tf-btn" onclick="setTF('1y',this)">1Y</button>
+          <button class="chart-tf-btn" data-tf="1D" onclick="setTF('1D',this)">1D</button>
+          <button class="chart-tf-btn" data-tf="5D" onclick="setTF('5D',this)">5D</button>
+          <button class="chart-tf-btn" data-tf="1M" onclick="setTF('1M',this)">1M</button>
+          <button class="chart-tf-btn active" data-tf="3M" onclick="setTF('3M',this)">3M</button>
+          <button class="chart-tf-btn" data-tf="6M" onclick="setTF('6M',this)">6M</button>
+          <button class="chart-tf-btn" data-tf="1Y" onclick="setTF('1Y',this)">1Y</button>
           <span style="margin-left:auto;font-family:'DM Mono',monospace;font-size:9px;color:var(--mu)" id="chart-status">Loading…</span>
         </div>
         <div id="tv-chart-container"></div>
@@ -688,6 +688,7 @@ table.wlt{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mon
 
 <div class="ftr">⚠ DISCLAIMER: For informational and educational purposes only. Not financial, investment, or trading advice. All investing involves risk including total loss of principal. Price data via Live API polling. Fundamentals (PE, PT, earnings) fetched via proxy API — may be delayed. Always verify with your broker before trading. Futures/extended hours data via proxy API.<br>Built with Live API · REST polling · 47 stocks · Iran War Oil Crisis Dashboard · March 2026</div>
 
+<script src="https://unpkg.com/lightweight-charts@4/dist/lightweight-charts.standalone.production.js"></script>
 <script>const FUT_SEEDS={ES:5720,NQ:19950,YM:43500,RTY:2050,CL:95.10,GC:2940};
 
 const API_KEY='FINNHUB_KEY_REMOVED';
@@ -1231,8 +1232,8 @@ fetchStartupQuotes().then(()=>{
 
 // --- CHART ANALYSIS MODULE v2 ---
 const TV_EX={NVDA:'NASDAQ',AAPL:'NASDAQ',MSFT:'NASDAQ',AMZN:'NASDAQ',META:'NASDAQ',GOOGL:'NASDAQ',AMD:'NASDAQ',AVGO:'NASDAQ',MU:'NASDAQ',ANET:'NASDAQ',APLD:'NASDAQ',NOW:'NYSE',APP:'NASDAQ',SNOW:'NYSE',TER:'NASDAQ',SNDK:'NASDAQ',CRCL:'NYSE',TSLA:'NASDAQ',CRWV:'NASDAQ',PLTR:'NASDAQ',PANW:'NASDAQ',ORCL:'NYSE',ADBE:'NASDAQ',COHR:'NYSE',VRT:'NYSE',LMT:'NYSE',NOC:'NYSE',RTX:'NYSE',XOM:'NYSE',CVX:'NYSE',JPM:'NYSE',HD:'NYSE',UNH:'NYSE',MRK:'NYSE',ISRG:'NASDAQ',LLY:'NYSE',NVO:'NYSE',KTOS:'NASDAQ',OKLO:'NYSE',SERV:'NASDAQ',HOOD:'NASDAQ',SHOP:'NYSE',RDDT:'NYSE',TWLO:'NYSE',QUBT:'NASDAQ',CAVA:'NYSE',SMR:'NYSE',SPY:'AMEX',QQQ:'NASDAQ',GLD:'AMEX',TLT:'NASDAQ',IWM:'AMEX',USO:'AMEX',VIXY:'AMEX',DIA:'AMEX'};
-const TF_MAP={'1D':{i:'5',r:'1D',l:'1 Day 5-min'},'5D':{i:'15',r:'5D',l:'5 Days 15-min'},'1M':{i:'60',r:'1M',l:'1 Month Hourly'},'3M':{i:'D',r:'3M',l:'3 Months Daily'},'6M':{i:'D',r:'6M',l:'6 Months Daily'},'1Y':{i:'W',r:'12M',l:'1 Year Weekly'}};
-let chartSym=null,analysisCache={};
+const TF_MAP={'1D':{i:'5',r:'1D',l:'1 Day 5-min',api:'5Min',limit:78},'5D':{i:'15',r:'5D',l:'5 Days 15-min',api:'15Min',limit:130},'1M':{i:'60',r:'1M',l:'1 Month Hourly',api:'1Hour',limit:160},'3M':{i:'D',r:'3M',l:'3 Months Daily',api:'1Day',limit:65},'6M':{i:'D',r:'6M',l:'6 Months Daily',api:'1Day',limit:130},'1Y':{i:'W',r:'12M',l:'1 Year Weekly',api:'1Week',limit:52}};
+let chartSym=null,analysisCache={},lwChart=null,lwCandleSeries=null,lwVolSeries=null,lwOverlaySeries=[],currentCandles=null,currentTF='3M';
 function openChart(sym){
   chartSym=sym;
   const item=STOCK_DATA.find(s=>s.sym===sym)||{sym,name:sym,signals:[],sigClass:[],thesis:''};
@@ -1248,30 +1249,191 @@ function openChart(sym){
   document.getElementById('chart-overlay').classList.add('open');
   document.body.style.overflow='hidden';
   setTF('3M',document.querySelector('.chart-tf-btn[data-tf="3M"]'));
+  // Auto-analyze if we have cached results
+  if(analysisCache[sym])renderAnalysis(analysisCache[sym],sym,livePrice[sym]);
 }
 function closeChart(){
   document.getElementById('chart-overlay').classList.remove('open');
   document.body.style.overflow='';
+  if(lwChart){try{lwChart.remove();}catch(e){}lwChart=null;lwCandleSeries=null;lwVolSeries=null;lwOverlaySeries=[];currentCandles=null;}
   const cont=document.getElementById('tv-chart-container');if(cont)cont.innerHTML='';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeChart();});
-function renderTVChart(sym,tfKey){
-  const cont=document.getElementById('tv-chart-container');if(!cont)return;cont.innerHTML='';
-  const tf=TF_MAP[tfKey]||TF_MAP['3M'],exch=TV_EX[sym]||'NASDAQ';
-  const tvSym=encodeURIComponent(exch+':'+sym);
-  const studies='RSI%40tv-basicstudies%2CMACD%40tv-basicstudies%2CBB%40tv-basicstudies%2CVolume%40tv-basicstudies';
-  const src='https://s.tradingview.com/widgetembed/?symbol='+tvSym+'&interval='+tf.i+'&range='+tf.r+'&theme=dark&style=1&locale=en&toolbar_bg=%23080b0f&hide_side_toolbar=0&allow_symbol_change=0&save_image=0&studies='+studies+'&withdateranges=1&details=1';
-  const iframe=document.createElement('iframe');
-  iframe.src=src;iframe.style.cssText='width:100%;height:100%;border:none;display:block;';
-  iframe.setAttribute('allowtransparency','true');iframe.setAttribute('frameborder','0');iframe.setAttribute('scrolling','no');iframe.setAttribute('allowfullscreen','true');
+async function fetchBars(sym,tfKey){
+  const tf=TF_MAP[tfKey]||TF_MAP['3M'];
+  try{
+    const r=await fetch(`${WORKER}/api/bars?symbol=${encodeURIComponent(sym)}&timeframe=${tf.api}&limit=${tf.limit}`,{signal:AbortSignal.timeout(12000)});
+    if(!r.ok)throw new Error('bars '+r.status);
+    const d=await r.json();return d.data||[];
+  }catch(e){console.warn('fetchBars:',e.message);return[];}
+}
+function barsToLW(candles){
+  return candles.map(c=>({time:c.t.split('T')[0],open:c.o,high:c.h,low:c.l,close:c.c})).sort((a,b)=>a.time<b.time?-1:1);
+}
+function barsToVol(candles){
+  return candles.map(c=>({time:c.t.split('T')[0],value:c.v,color:c.c>=c.o?'rgba(34,197,94,0.3)':'rgba(239,68,68,0.3)'})).sort((a,b)=>a.time<b.time?-1:1);
+}
+function calculateSMA(candles,period){
+  const sorted=[...candles].sort((a,b)=>a.t<b.t?-1:1);
+  const result=[];
+  for(let i=period-1;i<sorted.length;i++){
+    const sum=sorted.slice(i-period+1,i+1).reduce((a,c)=>a+c.c,0);
+    result.push({time:sorted[i].t.split('T')[0],value:sum/period});
+  }
+  return result;
+}
+function clearOverlays(){
+  if(!lwChart)return;
+  lwOverlaySeries.forEach(s=>{try{lwChart.removeSeries(s);}catch(e){}});
+  lwOverlaySeries=[];
+  if(lwCandleSeries){try{
+    const lines=lwCandleSeries.priceLines||[];
+    // Remove all price lines by recreating
+  }catch(e){}}
+}
+async function renderLWChart(sym,tfKey){
+  const cont=document.getElementById('tv-chart-container');if(!cont)return;
   const st=document.getElementById('chart-status');if(st)st.textContent='Loading '+sym+'...';
-  iframe.onload=()=>{if(st)st.textContent=sym+' - '+tf.l+' - TradingView';};
-  cont.appendChild(iframe);
+  const tf=TF_MAP[tfKey]||TF_MAP['3M'];
+  // Dispose old chart
+  if(lwChart){try{lwChart.remove();}catch(e){}lwChart=null;lwCandleSeries=null;lwVolSeries=null;lwOverlaySeries=[];}
+  cont.innerHTML='';
+  const candles=await fetchBars(sym,tfKey);
+  if(!candles.length){
+    cont.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--mu);font-size:12px">No price data available</div>';
+    if(st)st.textContent='No data';return;
+  }
+  currentCandles=candles;currentTF=tfKey;
+  const chart=LightweightCharts.createChart(cont,{
+    width:cont.clientWidth,height:cont.clientHeight,
+    layout:{background:{type:'solid',color:'#0a0a0f'},textColor:'#e2e8f0',fontFamily:'DM Mono, monospace',fontSize:10},
+    grid:{vertLines:{color:'rgba(28,35,48,0.5)'},horzLines:{color:'rgba(28,35,48,0.5)'}},
+    crosshair:{mode:0,vertLine:{color:'rgba(56,189,248,0.3)',width:1,style:2,labelBackgroundColor:'#1c2330'},horzLine:{color:'rgba(56,189,248,0.3)',width:1,style:2,labelBackgroundColor:'#1c2330'}},
+    rightPriceScale:{borderColor:'#1c2330',scaleMargins:{top:0.1,bottom:0.25}},
+    timeScale:{borderColor:'#1c2330',timeVisible:tf.api.includes('Min')||tf.api.includes('Hour'),secondsVisible:false},
+    handleScroll:true,handleScale:true
+  });
+  lwChart=chart;
+  // Candlestick series
+  const candleSeries=chart.addCandlestickSeries({
+    upColor:'#22c55e',downColor:'#ef4444',borderUpColor:'#22c55e',borderDownColor:'#ef4444',
+    wickUpColor:'#22c55e',wickDownColor:'#ef4444'
+  });
+  candleSeries.setData(barsToLW(candles));
+  lwCandleSeries=candleSeries;
+  // Volume histogram
+  const volSeries=chart.addHistogramSeries({
+    priceFormat:{type:'volume'},priceScaleId:'vol',
+    scaleMargins:{top:0.8,bottom:0}
+  });
+  chart.priceScale('vol').applyOptions({scaleMargins:{top:0.8,bottom:0}});
+  volSeries.setData(barsToVol(candles));
+  lwVolSeries=volSeries;
+  // SMAs
+  if(candles.length>=20){
+    const sma20s=chart.addLineSeries({color:'#3b82f6',lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    sma20s.setData(calculateSMA(candles,20));lwOverlaySeries.push(sma20s);
+  }
+  if(candles.length>=50){
+    const sma50s=chart.addLineSeries({color:'#f59e0b',lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    sma50s.setData(calculateSMA(candles,50));lwOverlaySeries.push(sma50s);
+  }
+  // Resize observer
+  const ro=new ResizeObserver(()=>{if(lwChart)chart.applyOptions({width:cont.clientWidth,height:cont.clientHeight});});
+  ro.observe(cont);chart._ro=ro;
+  chart.timeScale().fitContent();
+  if(st)st.textContent=sym+' — '+tf.l;
+  // If we have cached analysis, redraw overlays
+  if(analysisCache[sym])drawPatternOverlay(chart,candles,analysisCache[sym],livePrice[sym]);
+}
+function drawPatternOverlay(chart,candles,analysis,price){
+  if(!chart||!lwCandleSeries)return;
+  // Clear old overlay series (keep SMAs which are first in lwOverlaySeries)
+  const kl=analysis.key_levels||{};
+  // Draw key levels as price lines on candle series
+  const drawLevel=(val,color,style,width,title)=>{
+    if(!val||val<=0)return;
+    lwCandleSeries.createPriceLine({price:+val,color:color,lineWidth:width||1,lineStyle:style!=null?style:2,axisLabelVisible:true,title:title||''});
+  };
+  drawLevel(kl.resistance2,'#ef4444',2,1,'R2');
+  drawLevel(kl.resistance1,'#ef4444',2,1,'R1');
+  drawLevel(kl.support1,'#22c55e',2,1,'S1');
+  drawLevel(kl.support2,'#22c55e',2,1,'S2');
+  if(analysis.stop_loss)drawLevel(analysis.stop_loss,'#ef4444',1,2,'STOP');
+  if(price)drawLevel(price,'#eab308',0,1,'PRICE');
+  // Bull/bear targets
+  const bull=analysis.bullish_scenario||{},bear=analysis.bearish_scenario||{};
+  if(bull.target1)drawLevel(bull.target1,'rgba(34,197,94,0.5)',2,1,'T1↑');
+  if(bull.target2)drawLevel(bull.target2,'rgba(34,197,94,0.5)',2,1,'T2↑');
+  if(bear.target1)drawLevel(bear.target1,'rgba(239,68,68,0.5)',2,1,'T1↓');
+  if(bear.target2)drawLevel(bear.target2,'rgba(239,68,68,0.5)',2,1,'T2↓');
+  // Pattern trendlines
+  drawPatternTrendlines(chart,candles,analysis);
+}
+function findSwingHighs(candles,n){
+  const sorted=[...candles].sort((a,b)=>a.t<b.t?-1:1);
+  const pts=[];
+  for(let i=n;i<sorted.length-n;i++){
+    let isHigh=true;
+    for(let j=1;j<=n;j++){if(sorted[i].h<=sorted[i-j].h||sorted[i].h<=sorted[i+j].h){isHigh=false;break;}}
+    if(isHigh)pts.push({time:sorted[i].t.split('T')[0],value:sorted[i].h,idx:i});
+  }
+  return pts;
+}
+function findSwingLows(candles,n){
+  const sorted=[...candles].sort((a,b)=>a.t<b.t?-1:1);
+  const pts=[];
+  for(let i=n;i<sorted.length-n;i++){
+    let isLow=true;
+    for(let j=1;j<=n;j++){if(sorted[i].l>=sorted[i-j].l||sorted[i].l>=sorted[i+j].l){isLow=false;break;}}
+    if(isLow)pts.push({time:sorted[i].t.split('T')[0],value:sorted[i].l,idx:i});
+  }
+  return pts;
+}
+function drawTrendline(chart,points,color,width,style){
+  if(points.length<2)return;
+  const s=chart.addLineSeries({color:color||'#a78bfa',lineWidth:width||2,lineStyle:style!=null?style:2,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false,pointMarkersVisible:false});
+  s.setData(points.map(p=>({time:p.time,value:p.value})));
+  lwOverlaySeries.push(s);
+}
+function drawPatternTrendlines(chart,candles,analysis){
+  const pat=(analysis.primary_pattern||'').toLowerCase();
+  const sorted=[...candles].sort((a,b)=>a.t<b.t?-1:1);
+  const highs=findSwingHighs(candles,2);
+  const lows=findSwingLows(candles,2);
+  if(pat.includes('wedge')||pat.includes('triangle')||pat.includes('pennant')||pat.includes('channel')||pat.includes('flag')){
+    // Draw upper trendline from swing highs
+    if(highs.length>=2){
+      const last2h=highs.slice(-3);
+      drawTrendline(chart,last2h,'#a78bfa',2,2);
+    }
+    // Draw lower trendline from swing lows
+    if(lows.length>=2){
+      const last2l=lows.slice(-3);
+      drawTrendline(chart,last2l,'#a78bfa',2,2);
+    }
+  }else if(pat.includes('double bottom')||pat.includes('double top')){
+    const pts=pat.includes('bottom')?lows:highs;
+    if(pts.length>=2){
+      const last2=pts.slice(-2);
+      drawTrendline(chart,last2,pat.includes('bottom')?'#22c55e':'#ef4444',2,2);
+    }
+  }else if(pat.includes('head and shoulders')||pat.includes('h&s')){
+    // Draw neckline from lows
+    if(lows.length>=2){
+      drawTrendline(chart,lows.slice(-2),'#ef4444',2,2);
+    }
+  }
+  // For any pattern, if we have enough swing points, draw light guides
+  if(!pat.includes('wedge')&&!pat.includes('triangle')&&!pat.includes('channel')&&!pat.includes('flag')&&!pat.includes('double')&&!pat.includes('head')){
+    if(highs.length>=2)drawTrendline(chart,highs.slice(-2),'rgba(167,139,250,0.4)',1,2);
+    if(lows.length>=2)drawTrendline(chart,lows.slice(-2),'rgba(167,139,250,0.4)',1,2);
+  }
 }
 function setTF(tfKey,btn){
   document.querySelectorAll('.chart-tf-btn').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');else{const f=document.querySelector('.chart-tf-btn[data-tf="'+tfKey+'"]');if(f)f.classList.add('active');}
-  if(chartSym)renderTVChart(chartSym,tfKey);
+  if(chartSym)renderLWChart(chartSym,tfKey);
 }
 async function fetchOHLCVForAnalysis(sym){
   try{
@@ -1284,7 +1446,7 @@ async function fetchOHLCVForAnalysis(sym){
 async function runAnalysis(){
   if(!chartSym)return;
   const sym=chartSym,btn=document.getElementById('analyze-btn'),cont=document.getElementById('analysis-content');
-  if(analysisCache[sym]){renderAnalysis(analysisCache[sym],sym,livePrice[sym]);return;}
+  if(analysisCache[sym]){renderAnalysis(analysisCache[sym],sym,livePrice[sym]);if(lwChart&&currentCandles)drawPatternOverlay(lwChart,currentCandles,analysisCache[sym],livePrice[sym]);return;}
   btn.disabled=true;btn.textContent='Analyzing...';
   cont.innerHTML='<div class="analysis-loading"><div class="ai-spinner"></div><div>Fetching price history for '+sym+'...</div></div>';
   try{
@@ -1338,6 +1500,7 @@ async function runAnalysis(){
     const apiData=await resp.json(),text=apiData.content?.[0]?.text||'';
     const match=text.match(/\{[\s\S]*\}/);if(!match)throw new Error('No JSON');
     const analysis=JSON.parse(match[0]);analysisCache[sym]=analysis;renderAnalysis(analysis,sym,price);
+    if(lwChart&&currentCandles)drawPatternOverlay(lwChart,currentCandles,analysis,price);
   }catch(e){
     const isCORS = e.message.includes('fetch') || e.message.includes('Failed') || e.message.includes('Load failed');
     const isProxy = e.message.includes('YOURNAME') || e.message.includes('workers.dev');
@@ -1346,7 +1509,7 @@ async function runAnalysis(){
       : isCORS
       ? 'CORS blocked. Deploy the Cloudflare Worker proxy and update PROXY_URL in the dashboard.'
       : e.message;
-    cont.innerHTML='<div class="pattern-block bear"><h4>'+e.message.includes('403')?'API Auth Error':isCORS?'CORS / Network Error':'Error'+'</h4><p style="font-size:11px;line-height:1.7">'+errMsg+'<br><br><strong style="color:var(--ac)">The TradingView chart above works fully</strong> — RSI, MACD, and Bollinger Bands are available for manual analysis.</p></div>';
+    cont.innerHTML='<div class="pattern-block bear"><h4>'+e.message.includes('403')?'API Auth Error':isCORS?'CORS / Network Error':'Error'+'</h4><p style="font-size:11px;line-height:1.7">'+errMsg+'<br><br><strong style="color:var(--ac)">The chart above shows candles with SMA overlays</strong> — use the timeframe buttons for different views.</p></div>';
     console.error('Analysis error:',e);
   }
   btn.disabled=false;btn.textContent='Re-analyze';
