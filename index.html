@@ -1764,6 +1764,232 @@ function applyNarrative(n, today) {
 }
 // --- END NARRATIVE REFRESH MODULE ---
 
+
+// ══ DAILY CONTENT AUTO-REFRESH ══
+/**
+ * daily-content-loader.js — Dashboard integration snippet
+ * 
+ * Paste this code into dashboard-v2.html inside the <script> tag,
+ * AFTER all existing functions but BEFORE </script>.
+ * 
+ * Then add a call to loadDailyContent() at the end of your init code.
+ */
+
+// ── Daily Content Loader ──
+async function loadDailyContent() {
+  try {
+    const r = await fetch(`${WORKER}/api/daily-content`, { signal: AbortSignal.timeout(8000) });
+    if (!r.ok) { console.log('Daily content not available:', r.status); return; }
+    const json = await r.json();
+    if (json.data) {
+      console.log(`Daily content loaded: ${json.data.date}, regime: ${json.data.market_regime}, ${json.data.stocks_covered} stocks`);
+      applyDailyContent(json.data);
+    }
+  } catch (e) {
+    console.log('Daily content fetch failed (using hardcoded fallback):', e.message);
+  }
+}
+
+function applyDailyContent(data) {
+  // 1. Update macro section
+  if (data.macro) {
+    applyMacroContent(data.macro, data.market_regime);
+  }
+
+  // 2. Update stock theses
+  if (data.stock_theses) {
+    applyStockTheses(data.stock_theses);
+  }
+
+  // 3. Update options strategies
+  if (data.options_strategies) {
+    applyOptionsStrategies(data.options_strategies);
+  }
+
+  // 4. Update day trade setups
+  if (data.day_trades) {
+    applyDayTrades(data.day_trades);
+  }
+
+  // 5. Update unusual flow
+  if (data.unusual_flow) {
+    applyUnusualFlow(data.unusual_flow);
+  }
+
+  // 6. Update top picks banner
+  if (data.top_opportunity || data.top_avoid) {
+    applyTopPicks(data.top_opportunity, data.top_avoid);
+  }
+
+  // 7. Mark content as fresh with timestamp
+  const badge = document.createElement('div');
+  badge.className = 'daily-content-badge';
+  badge.style.cssText = 'position:fixed;bottom:8px;right:8px;background:#10b981;color:#fff;font-size:10px;padding:2px 8px;border-radius:8px;opacity:0.7;z-index:9999;pointer-events:none;';
+  badge.textContent = `AI Brief: ${data.date} ${data.market_regime || ''}`;
+  document.body.appendChild(badge);
+  setTimeout(() => { badge.style.opacity = '0'; badge.style.transition = 'opacity 3s'; }, 10000);
+}
+
+function applyMacroContent(macro, regime) {
+  // Update macro headline if element exists
+  const headlineEls = document.querySelectorAll('.macro-headline, [data-macro-headline]');
+  headlineEls.forEach(el => { el.textContent = macro.headline; });
+
+  // Update macro subtext
+  const subtextEls = document.querySelectorAll('.macro-subtext, [data-macro-subtext]');
+  subtextEls.forEach(el => { el.textContent = macro.subtext; });
+
+  // Update regime indicator
+  const regimeEls = document.querySelectorAll('.market-regime, [data-regime]');
+  regimeEls.forEach(el => {
+    el.textContent = regime;
+    el.className = el.className.replace(/regime-\w+/g, '');
+    el.classList.add(`regime-${regime.toLowerCase().replace(/[^a-z]/g, '')}`);
+  });
+
+  // Update theme cards by data attribute
+  const themeMap = {
+    'oil': macro.oil_theme,
+    'gold': macro.gold_theme,
+    'btc': macro.btc_theme,
+    'vix': macro.vix_assessment,
+    'fed': macro.fed_outlook,
+    'levels': macro.key_levels
+  };
+  for (const [key, text] of Object.entries(themeMap)) {
+    const els = document.querySelectorAll(`[data-theme="${key}"]`);
+    els.forEach(el => { if (text) el.textContent = text; });
+  }
+}
+
+function applyStockTheses(theses) {
+  // Update STOCK_DATA array in memory if it exists
+  if (typeof STOCK_DATA !== 'undefined' && Array.isArray(STOCK_DATA)) {
+    for (const stock of STOCK_DATA) {
+      const t = theses[stock.sym];
+      if (t) {
+        if (t.signals) stock.signals = t.signals;
+        if (t.signalClasses) stock.sigClass = t.signalClasses;
+        if (t.thesis) stock.thesis = t.thesis;
+        if (t.catalysts) stock.catalysts = t.catalysts;
+        if (t.risks) stock.risks = t.risks;
+      }
+    }
+  }
+
+  // Rebuild cards with updated data
+  if (typeof buildCards === "function") buildCards();
+  // Update any currently rendered stock cards
+  for (const [sym, t] of Object.entries(theses)) {
+    // Update thesis text
+    const thesisEl = document.querySelector(`[data-sym="${sym}"] .thesis-text, #thesis-${sym}`);
+    if (thesisEl && t.thesis) thesisEl.textContent = t.thesis;
+
+    // Update catalysts
+    const catEl = document.querySelector(`[data-sym="${sym}"] .catalysts-text, #catalysts-${sym}`);
+    if (catEl && t.catalysts) catEl.textContent = t.catalysts;
+
+    // Update risks
+    const riskEl = document.querySelector(`[data-sym="${sym}"] .risks-text, #risks-${sym}`);
+    if (riskEl && t.risks) riskEl.textContent = t.risks;
+
+    // Update signals
+    const sigContainer = document.querySelector(`[data-sym="${sym}"] .signals, #signals-${sym}`);
+    if (sigContainer && t.signals) {
+      sigContainer.innerHTML = t.signals.map((s, i) => 
+        `<span class="sig ${(t.signalClasses || [])[i] || 'sig-neu'}">${s}</span>`
+      ).join('');
+    }
+
+    // Update day trade levels
+    const dtEntry = document.querySelector(`[data-sym="${sym}"] .dt-entry`);
+    if (dtEntry && t.dayTradeEntry) dtEntry.textContent = t.dayTradeEntry;
+    const dtTarget = document.querySelector(`[data-sym="${sym}"] .dt-target`);
+    if (dtTarget && t.dayTradeTarget) dtTarget.textContent = t.dayTradeTarget;
+    const dtStop = document.querySelector(`[data-sym="${sym}"] .dt-stop`);
+    if (dtStop && t.dayTradeStop) dtStop.textContent = t.dayTradeStop;
+  }
+}
+
+function applyOptionsStrategies(strategies) {
+  const container = document.querySelector('.options-strategies, [data-section="options"], #options-container');
+  if (!container) return;
+
+  // Build HTML for strategies
+  const html = strategies.map(s => `
+    <div class="option-card" style="background:#1e293b;border-radius:8px;padding:12px;margin-bottom:8px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <span style="font-weight:700;color:#e2e8f0;">${s.symbol}</span>
+        <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:#334155;color:#94a3b8;">${s.strategy}</span>
+      </div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:6px;">${s.rationale}</div>
+      <div style="font-size:11px;color:#cbd5e1;">
+        ${s.legs.map(l => `${l.action} ${l.type} $${l.strike} ${l.expiry}`).join(' / ')}
+      </div>
+      <div style="display:flex;gap:12px;margin-top:6px;font-size:11px;">
+        <span style="color:#10b981;">Max: ${s.maxProfit}</span>
+        <span style="color:#ef4444;">Risk: ${s.maxLoss}</span>
+        <span style="color:#f59e0b;">BE: ${s.breakeven}</span>
+      </div>
+    </div>
+  `).join('');
+
+  container.innerHTML = html;
+}
+
+function applyDayTrades(trades) {
+  const container = document.querySelector('.day-trades, [data-section="daytrades"], #daytrades-container');
+  if (!container) return;
+
+  const html = trades.map(t => `
+    <div class="dt-card" style="background:#1e293b;border-radius:8px;padding:10px;margin-bottom:6px;display:flex;align-items:center;gap:12px;">
+      <span style="font-weight:700;color:#e2e8f0;min-width:48px;">${t.symbol}</span>
+      <span style="font-size:11px;padding:1px 6px;border-radius:3px;background:${t.bias==='BULLISH'?'#065f46':'#7f1d1d'};color:${t.bias==='BULLISH'?'#6ee7b7':'#fca5a5'};">${t.bias}</span>
+      <span style="font-size:11px;color:#94a3b8;">Entry: ${t.entry}</span>
+      <span style="font-size:11px;color:#10b981;">Target: ${t.target}</span>
+      <span style="font-size:11px;color:#ef4444;">Stop: ${t.stop}</span>
+      <span style="font-size:10px;color:#64748b;margin-left:auto;">${t.note}</span>
+    </div>
+  `).join('');
+
+  container.innerHTML = html;
+}
+
+function applyUnusualFlow(flow) {
+  const container = document.querySelector('.unusual-flow, [data-section="flow"], #flow-container');
+  if (!container) return;
+
+  const html = flow.map(f => `
+    <div class="flow-card" style="background:#1e293b;border-radius:8px;padding:10px;margin-bottom:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-weight:700;color:#e2e8f0;">${f.symbol}</span>
+        <span style="font-size:11px;color:#f59e0b;">${f.type}</span>
+        <span style="font-size:11px;color:#94a3b8;">Vol/OI: ${f.volOI}</span>
+        <span style="font-size:11px;color:#10b981;">${f.callPct}%C</span>
+        <span style="font-size:11px;color:#ef4444;">${f.putPct}%P</span>
+        <span style="font-size:11px;color:#e2e8f0;">${f.premium}</span>
+      </div>
+      <div style="font-size:11px;color:#64748b;margin-top:4px;">${f.contract} — ${f.interpretation}</div>
+    </div>
+  `).join('');
+
+  container.innerHTML = html;
+}
+
+function applyTopPicks(opp, avoid) {
+  const oppEl = document.querySelector('.top-opportunity, [data-top-opp]');
+  if (oppEl && opp) {
+    oppEl.innerHTML = `<span style="color:#10b981;">🎯 TOP: ${opp.symbol}</span> — ${opp.reason}`;
+  }
+
+  const avoidEl = document.querySelector('.top-avoid, [data-top-avoid]');
+  if (avoidEl && avoid) {
+    avoidEl.innerHTML = `<span style="color:#ef4444;">⚠️ AVOID: ${avoid.symbol}</span> — ${avoid.reason}`;
+  }
+}
+
+// ── Call this at the end of your initialization ──
+loadDailyContent();
 </script>
 </body>
 </html>
