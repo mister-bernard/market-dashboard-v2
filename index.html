@@ -1552,6 +1552,9 @@ async function refreshNarrative() {
   const status = document.getElementById('narr-status');
   if (!btn) return;
 
+  // Also reload from daily content API
+  loadDailyContent();
+
   btn.disabled = true;
   btn.textContent = '⟳ Refreshing...';
   if (status) status.textContent = 'Claude is analyzing current conditions…';
@@ -1766,16 +1769,7 @@ function applyNarrative(n, today) {
 
 
 // ══ DAILY CONTENT AUTO-REFRESH ══
-/**
- * daily-content-loader.js — Dashboard integration snippet
- * 
- * Paste this code into dashboard-v2.html inside the <script> tag,
- * AFTER all existing functions but BEFORE the closing script tag.
- * 
- * Then add a call to loadDailyContent() at the end of your init code.
- */
 
-// ── Daily Content Loader ──
 async function loadDailyContent() {
   try {
     const r = await fetch(`${WORKER}/api/daily-content`, { signal: AbortSignal.timeout(8000) });
@@ -1791,204 +1785,266 @@ async function loadDailyContent() {
 }
 
 function applyDailyContent(data) {
-  // 1. Update macro section
-  if (data.macro) {
-    applyMacroContent(data.macro, data.market_regime);
-  }
+  try {
+    if (data.macro) applyMacroContent(data.macro, data.market_regime);
+    if (data.stock_theses) applyStockTheses(data.stock_theses);
+    if (data.options_strategies) applyOptionsStrategies(data.options_strategies);
+    if (data.day_trades) applyDayTrades(data.day_trades);
+    if (data.unusual_flow) applyUnusualFlow(data.unusual_flow);
+    if (data.top_opportunity || data.top_avoid) applyTopPicks(data.top_opportunity, data.top_avoid);
 
-  // 2. Update stock theses
-  if (data.stock_theses) {
-    applyStockTheses(data.stock_theses);
+    // Fresh content badge
+    const old = document.getElementById('daily-content-badge');
+    if (old) old.remove();
+    const badge = document.createElement('div');
+    badge.id = 'daily-content-badge';
+    badge.style.cssText = 'position:fixed;bottom:8px;right:8px;background:#10b981;color:#fff;font-size:10px;padding:2px 8px;border-radius:8px;opacity:0.7;z-index:9999;pointer-events:none;';
+    badge.textContent = `AI Brief: ${data.date} ${data.market_regime || ''}`;
+    document.body.appendChild(badge);
+    setTimeout(() => { badge.style.opacity = '0'; badge.style.transition = 'opacity 3s'; }, 10000);
+  } catch (e) {
+    console.error('applyDailyContent error:', e);
   }
-
-  // 3. Update options strategies
-  if (data.options_strategies) {
-    applyOptionsStrategies(data.options_strategies);
-  }
-
-  // 4. Update day trade setups
-  if (data.day_trades) {
-    applyDayTrades(data.day_trades);
-  }
-
-  // 5. Update unusual flow
-  if (data.unusual_flow) {
-    applyUnusualFlow(data.unusual_flow);
-  }
-
-  // 6. Update top picks banner
-  if (data.top_opportunity || data.top_avoid) {
-    applyTopPicks(data.top_opportunity, data.top_avoid);
-  }
-
-  // 7. Mark content as fresh with timestamp
-  const badge = document.createElement('div');
-  badge.className = 'daily-content-badge';
-  badge.style.cssText = 'position:fixed;bottom:8px;right:8px;background:#10b981;color:#fff;font-size:10px;padding:2px 8px;border-radius:8px;opacity:0.7;z-index:9999;pointer-events:none;';
-  badge.textContent = `AI Brief: ${data.date} ${data.market_regime || ''}`;
-  document.body.appendChild(badge);
-  setTimeout(() => { badge.style.opacity = '0'; badge.style.transition = 'opacity 3s'; }, 10000);
 }
 
 function applyMacroContent(macro, regime) {
-  // Update macro headline if element exists
-  const headlineEls = document.querySelectorAll('.macro-headline, [data-macro-headline]');
-  headlineEls.forEach(el => { el.textContent = macro.headline; });
-
-  // Update macro subtext
-  const subtextEls = document.querySelectorAll('.macro-subtext, [data-macro-subtext]');
-  subtextEls.forEach(el => { el.textContent = macro.subtext; });
-
-  // Update regime indicator
-  const regimeEls = document.querySelectorAll('.market-regime, [data-regime]');
-  regimeEls.forEach(el => {
-    el.textContent = regime;
-    el.className = el.className.replace(/regime-\w+/g, '');
-    el.classList.add(`regime-${regime.toLowerCase().replace(/[^a-z]/g, '')}`);
-  });
-
-  // Update theme cards by data attribute
-  const themeMap = {
-    'oil': macro.oil_theme,
-    'gold': macro.gold_theme,
-    'btc': macro.btc_theme,
-    'vix': macro.vix_assessment,
-    'fed': macro.fed_outlook,
-    'levels': macro.key_levels
-  };
-  for (const [key, text] of Object.entries(themeMap)) {
-    const els = document.querySelectorAll(`[data-theme="${key}"]`);
-    els.forEach(el => { if (text) el.textContent = text; });
+  // Update the regime tag in the macro tab h2
+  const macroH2 = document.querySelector('#tab-macro h2 .tag');
+  if (macroH2 && regime) {
+    macroH2.textContent = regime + ' · AI GENERATED';
   }
+
+  // Update the 8 macro cards: #tab-macro .mgrid .mcard
+  const macroCards = document.querySelectorAll('#tab-macro .mgrid .mcard');
+  if (macroCards.length < 8) return;
+
+  // Card 0: Oil
+  const c0h = macroCards[0].querySelector('h4');
+  const c0p = macroCards[0].querySelector('p');
+  if (c0h && macro.oil_theme) { c0h.textContent = 'Oil & Energy'; c0p.textContent = macro.oil_theme; }
+
+  // Card 1: Inflation/Macro
+  const c1h = macroCards[1].querySelector('h4');
+  const c1p = macroCards[1].querySelector('p');
+  if (c1h && macro.subtext) { c1h.textContent = 'Macro Conditions'; c1p.textContent = macro.subtext; }
+
+  // Card 2: Fed/Rates
+  const c2h = macroCards[2].querySelector('h4');
+  const c2p = macroCards[2].querySelector('p');
+  if (c2h && macro.fed_outlook) { c2h.textContent = 'Fed & Rates'; c2p.textContent = macro.fed_outlook; }
+
+  // Card 3: Bitcoin
+  const c3h = macroCards[3].querySelector('h4');
+  const c3p = macroCards[3].querySelector('p');
+  if (c3h && macro.btc_theme) { c3h.textContent = 'Bitcoin & Crypto'; c3p.textContent = macro.btc_theme; }
+
+  // Card 4: Global/Volatility
+  const c4h = macroCards[4].querySelector('h4');
+  const c4p = macroCards[4].querySelector('p');
+  if (c4h && macro.vix_assessment) { c4h.textContent = 'Volatility & Risk'; c4p.textContent = macro.vix_assessment; }
+
+  // Card 5: Breadth - update if headline/subtext available
+  const c5h = macroCards[5].querySelector('h4');
+  const c5p = macroCards[5].querySelector('p');
+  if (c5h && macro.headline) { c5h.textContent = macro.headline; c5p.textContent = macro.subtext || ''; }
+
+  // Card 6: Key Levels / Catalysts
+  const c6h = macroCards[6].querySelector('h4');
+  const c6p = macroCards[6].querySelector('p');
+  if (c6h && macro.key_levels) { c6h.textContent = 'Key Levels & Catalysts'; c6p.textContent = macro.key_levels; }
+
+  // Card 7: Avoid/Gold
+  const c7h = macroCards[7].querySelector('h4');
+  const c7p = macroCards[7].querySelector('p');
+  if (c7h && macro.gold_theme) { c7h.textContent = 'Gold & Safe Havens'; c7p.textContent = macro.gold_theme; }
 }
 
 function applyStockTheses(theses) {
-  // Update STOCK_DATA array in memory if it exists
-  if (typeof STOCK_DATA !== 'undefined' && Array.isArray(STOCK_DATA)) {
-    for (const stock of STOCK_DATA) {
-      const t = theses[stock.sym];
-      if (t) {
-        if (t.signals) stock.signals = t.signals;
-        if (t.signalClasses) stock.sigClass = t.signalClasses;
-        if (t.thesis) stock.thesis = t.thesis;
-        if (t.catalysts) stock.catalysts = t.catalysts;
-        if (t.risks) stock.risks = t.risks;
-      }
-    }
+  if (typeof STOCK_DATA === 'undefined' || !Array.isArray(STOCK_DATA)) return;
+
+  let changed = false;
+  for (const stock of STOCK_DATA) {
+    const t = theses[stock.sym];
+    if (!t) continue;
+    if (t.signals) { stock.signals = t.signals; changed = true; }
+    if (t.signalClasses) { stock.sigClass = t.signalClasses; changed = true; }
+    if (t.thesis) { stock.thesis = t.thesis; changed = true; }
+    if (t.catalysts) { stock.catalysts = t.catalysts; changed = true; }
+    if (t.risks) { stock.risks = t.risks; changed = true; }
   }
 
-  // Rebuild cards with updated data
-  if (typeof buildCards === "function") buildCards();
-  // Update any currently rendered stock cards
-  for (const [sym, t] of Object.entries(theses)) {
-    // Update thesis text
-    const thesisEl = document.querySelector(`[data-sym="${sym}"] .thesis-text, #thesis-${sym}`);
-    if (thesisEl && t.thesis) thesisEl.textContent = t.thesis;
-
-    // Update catalysts
-    const catEl = document.querySelector(`[data-sym="${sym}"] .catalysts-text, #catalysts-${sym}`);
-    if (catEl && t.catalysts) catEl.textContent = t.catalysts;
-
-    // Update risks
-    const riskEl = document.querySelector(`[data-sym="${sym}"] .risks-text, #risks-${sym}`);
-    if (riskEl && t.risks) riskEl.textContent = t.risks;
-
-    // Update signals
-    const sigContainer = document.querySelector(`[data-sym="${sym}"] .signals, #signals-${sym}`);
-    if (sigContainer && t.signals) {
-      sigContainer.innerHTML = t.signals.map((s, i) => 
-        `<span class="sig ${(t.signalClasses || [])[i] || 'sig-neu'}">${s}</span>`
-      ).join('');
-    }
-
-    // Update day trade levels
-    const dtEntry = document.querySelector(`[data-sym="${sym}"] .dt-entry`);
-    if (dtEntry && t.dayTradeEntry) dtEntry.textContent = t.dayTradeEntry;
-    const dtTarget = document.querySelector(`[data-sym="${sym}"] .dt-target`);
-    if (dtTarget && t.dayTradeTarget) dtTarget.textContent = t.dayTradeTarget;
-    const dtStop = document.querySelector(`[data-sym="${sym}"] .dt-stop`);
-    if (dtStop && t.dayTradeStop) dtStop.textContent = t.dayTradeStop;
-  }
+  if (changed && typeof buildCards === 'function') buildCards();
 }
 
 function applyOptionsStrategies(strategies) {
-  const container = document.querySelector('.options-strategies, [data-section="options"], #options-container');
-  if (!container) return;
+  // Find all existing .ocard elements inside #tab-options
+  const tabOptions = document.getElementById('tab-options');
+  if (!tabOptions) return;
 
-  // Build HTML for strategies
-  const html = strategies.map(s => `
-    <div class="option-card" style="background:#1e293b;border-radius:8px;padding:12px;margin-bottom:8px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-        <span style="font-weight:700;color:#e2e8f0;">${s.symbol}</span>
-        <span style="font-size:11px;padding:2px 8px;border-radius:4px;background:#334155;color:#94a3b8;">${s.strategy}</span>
-      </div>
-      <div style="font-size:12px;color:#94a3b8;margin-bottom:6px;">${s.rationale}</div>
-      <div style="font-size:11px;color:#cbd5e1;">
-        ${s.legs.map(l => `${l.action} ${l.type} $${l.strike} ${l.expiry}`).join(' / ')}
-      </div>
-      <div style="display:flex;gap:12px;margin-top:6px;font-size:11px;">
-        <span style="color:#10b981;">Max: ${s.maxProfit}</span>
-        <span style="color:#ef4444;">Risk: ${s.maxLoss}</span>
-        <span style="color:#f59e0b;">BE: ${s.breakeven}</span>
-      </div>
-    </div>
-  `).join('');
+  // Remove all existing .ocard elements
+  const oldCards = tabOptions.querySelectorAll('.ocard');
+  oldCards.forEach(c => c.remove());
 
-  container.innerHTML = html;
+  // Find the insertion point: after the options strategies h2/p intro
+  // The strategies h2 contains "Options Strategies"
+  const allH2 = tabOptions.querySelectorAll('h2');
+  let stratH2 = null;
+  for (const h of allH2) {
+    if (h.textContent.includes('Options Strategies')) { stratH2 = h; break; }
+  }
+  // Insert after the sec-intro paragraph that follows the h2
+  let insertAfter = stratH2;
+  if (stratH2 && stratH2.nextElementSibling && stratH2.nextElementSibling.classList.contains('sec-intro')) {
+    insertAfter = stratH2.nextElementSibling;
+  }
+  if (!insertAfter) {
+    // Fallback: append to end of tab
+    insertAfter = tabOptions.lastElementChild;
+  }
+
+  // Build new .ocard elements from API data
+  strategies.forEach(s => {
+    const ocard = document.createElement('div');
+    ocard.className = 'ocard';
+
+    const legsHTML = (s.legs || []).map(l =>
+      `<tr><td>${l.action}</td><td>${l.type}</td><td>$${l.strike}</td><td>${l.expiry}</td></tr>`
+    ).join('');
+
+    ocard.innerHTML = `<div class="ohdr">` +
+      `<div class="otick" style="color:var(--ac)">${s.symbol}</div>` +
+      `<div class="ostrat">${s.strategy}</div>` +
+      `<span>Live: <span id="ol-dc-${s.symbol}" class="linline neu">—</span></span>` +
+      `</div>` +
+      `<p style="color:#94a3b8;font-size:12px;margin-bottom:10px">${s.rationale || ''}</p>` +
+      `<table class="otable">` +
+      `<thead><tr><th>ACTION</th><th>TYPE</th><th>STRIKE</th><th>EXPIRY</th></tr></thead>` +
+      `<tbody>${legsHTML}</tbody>` +
+      `</table>` +
+      `<div class="onote">` +
+      `<strong>Max Profit:</strong> ${s.maxProfit || '—'} · ` +
+      `<strong>Max Loss:</strong> ${s.maxLoss || '—'} · ` +
+      `<strong>Breakeven:</strong> ${s.breakeven || '—'}` +
+      `</div>`;
+
+    insertAfter.after(ocard);
+    insertAfter = ocard; // chain insertions in order
+  });
 }
 
 function applyDayTrades(trades) {
-  const container = document.querySelector('.day-trades, [data-section="daytrades"], #daytrades-container');
-  if (!container) return;
+  const grid = document.getElementById('grid-dt');
+  if (!grid) return;
 
-  const html = trades.map(t => `
-    <div class="dt-card" style="background:#1e293b;border-radius:8px;padding:10px;margin-bottom:6px;display:flex;align-items:center;gap:12px;">
-      <span style="font-weight:700;color:#e2e8f0;min-width:48px;">${t.symbol}</span>
-      <span style="font-size:11px;padding:1px 6px;border-radius:3px;background:${t.bias==='BULLISH'?'#065f46':'#7f1d1d'};color:${t.bias==='BULLISH'?'#6ee7b7':'#fca5a5'};">${t.bias}</span>
-      <span style="font-size:11px;color:#94a3b8;">Entry: ${t.entry}</span>
-      <span style="font-size:11px;color:#10b981;">Target: ${t.target}</span>
-      <span style="font-size:11px;color:#ef4444;">Stop: ${t.stop}</span>
-      <span style="font-size:10px;color:#64748b;margin-left:auto;">${t.note}</span>
-    </div>
-  `).join('');
+  // Clear existing day trade cards
+  grid.innerHTML = '';
 
-  container.innerHTML = html;
+  trades.forEach(t => {
+    const biasClass = t.bias === 'BULLISH' ? 'dcard' : t.bias === 'BEARISH' ? 'ecard' : '';
+    const biasColor = t.bias === 'BULLISH' ? 'var(--gr)' : t.bias === 'BEARISH' ? 'var(--rd)' : 'var(--yl)';
+
+    const card = document.createElement('div');
+    card.className = `scard ${biasClass}`;
+    card.innerHTML = `<div class="shdr">` +
+      `<div><div class="sticker">${t.symbol}</div><div class="sco">${t.bias || ''}</div></div>` +
+      `<div class="pbox">` +
+      `<div id="cp-dt-dc-${t.symbol}" style="font-family:'DM Mono',monospace;font-size:14px;font-weight:700"><span class="skel" style="width:55px">&nbsp;</span></div>` +
+      `<div id="cb-dt-dc-${t.symbol}" class="chgb chgn">— connecting</div>` +
+      `</div></div>` +
+      `<div class="sbody">${t.note || ''}<br><br>` +
+      `Entry: <strong style="color:var(--ht)">${t.entry || '—'}</strong> · ` +
+      `Target: <strong style="color:var(--gr)">${t.target || '—'}</strong> · ` +
+      `Stop: <strong style="color:var(--rd)">${t.stop || '—'}</strong></div>` +
+      `<div class="sigrow">` +
+      `<span class="sig" style="background:${biasColor === 'var(--gr)' ? 'rgba(34,197,94,.12)' : 'rgba(244,63,94,.12)'};color:${biasColor}">${t.bias || 'NEUTRAL'}</span>` +
+      `<span class="sig sig-neu">${t.symbol}</span>` +
+      `</div>`;
+
+    grid.appendChild(card);
+  });
 }
 
 function applyUnusualFlow(flow) {
-  const container = document.querySelector('.unusual-flow, [data-section="flow"], #flow-container');
-  if (!container) return;
+  const uvgrid = document.querySelector('#tab-options .uvgrid');
+  if (!uvgrid) return;
 
-  const html = flow.map(f => `
-    <div class="flow-card" style="background:#1e293b;border-radius:8px;padding:10px;margin-bottom:6px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-weight:700;color:#e2e8f0;">${f.symbol}</span>
-        <span style="font-size:11px;color:#f59e0b;">${f.type}</span>
-        <span style="font-size:11px;color:#94a3b8;">Vol/OI: ${f.volOI}</span>
-        <span style="font-size:11px;color:#10b981;">${f.callPct}%C</span>
-        <span style="font-size:11px;color:#ef4444;">${f.putPct}%P</span>
-        <span style="font-size:11px;color:#e2e8f0;">${f.premium}</span>
-      </div>
-      <div style="font-size:11px;color:#64748b;margin-top:4px;">${f.contract} — ${f.interpretation}</div>
-    </div>
-  `).join('');
+  // Clear existing flow cards
+  uvgrid.innerHTML = '';
 
-  container.innerHTML = html;
+  flow.forEach(f => {
+    const isBull = f.callPct > 60;
+    const isBear = f.putPct > 60;
+    const sentiment = isBull ? 'uvbull' : isBear ? 'uvbear' : 'uvneu';
+    const tickDir = isBull ? 'up' : isBear ? 'dn' : 'neu';
+    const volRatioNum = parseFloat(f.volOI) || 0;
+    const ratioClass = volRatioNum >= 8 ? 'extreme' : volRatioNum >= 4 ? 'bull' : 'hot';
+    const premColor = isBull ? 'var(--gr)' : isBear ? 'var(--rd)' : 'var(--yl)';
+    const typeClass = f.type?.toLowerCase().includes('call') ? 'call' : f.type?.toLowerCase().includes('put') ? 'put' : 'mixed';
+    const confirmColor = isBull ? 'var(--gr)' : isBear ? 'var(--rd)' : 'var(--yl)';
+
+    const card = document.createElement('div');
+    card.className = `uvcard ${sentiment}`;
+    card.innerHTML =
+      `<div class="uvhdr">` +
+        `<div>` +
+          `<div class="uvtick ${tickDir}">${f.symbol}</div>` +
+          `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--mu)">${f.symbol}</div>` +
+        `</div>` +
+        `<div style="text-align:right">` +
+          `<div class="uvratio ${ratioClass}">${f.volOI}</div>` +
+          `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--mu)">Vol/OI</div>` +
+        `</div>` +
+      `</div>` +
+      `<div class="uvflow">` +
+        `<div class="uvfc" style="width:${f.callPct}%"></div>` +
+        `<div class="uvfp" style="width:${f.putPct}%"></div>` +
+      `</div>` +
+      `<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--mu);margin-bottom:7px">${f.callPct}% CALLS · ${f.putPct}% PUTS</div>` +
+      `<div class="uvmeta">` +
+        `<div class="uvmi"><div class="uvml">Contract</div><div>${f.contract || '—'}</div></div>` +
+        `<div class="uvmi"><div class="uvml">Type</div><div><span class="uvtype ${typeClass}">${f.type || '—'}</span></div></div>` +
+        `<div class="uvmi"><div class="uvml">Premium</div><div style="color:${premColor}">${f.premium || '—'}</div></div>` +
+      `</div>` +
+      `<div class="uvbody">${f.interpretation || ''}</div>` +
+      `<div class="sigrow" style="margin-top:7px">` +
+        `<span class="sig ${isBull ? 'sig-hot' : isBear ? 'sig-bear' : 'sig-neu'}">${f.type || ''} ${f.premium || ''}</span>` +
+        `<span class="sig ${isBull ? 'sig-bull' : isBear ? 'sig-bear' : 'sig-neu'}">${f.contract || ''}</span>` +
+        `<span class="sig ${isBull ? 'sig-bull' : isBear ? 'sig-bear' : 'sig-neu'}">${f.volOI} NORMAL</span>` +
+      `</div>`;
+
+    uvgrid.appendChild(card);
+  });
 }
 
 function applyTopPicks(opp, avoid) {
-  const oppEl = document.querySelector('.top-opportunity, [data-top-opp]');
-  if (oppEl && opp) {
-    oppEl.innerHTML = `<span style="color:#10b981;">🎯 TOP: ${opp.symbol}</span> — ${opp.reason}`;
-  }
+  // Insert/update a top picks banner in the macro tab
+  const macroTab = document.getElementById('tab-macro');
+  if (!macroTab) return;
 
-  const avoidEl = document.querySelector('.top-avoid, [data-top-avoid]');
-  if (avoidEl && avoid) {
-    avoidEl.innerHTML = `<span style="color:#ef4444;">⚠️ AVOID: ${avoid.symbol}</span> — ${avoid.reason}`;
-  }
+  const oldBanner = document.getElementById('daily-top-picks');
+  if (oldBanner) oldBanner.remove();
+
+  const banner = document.createElement('div');
+  banner.id = 'daily-top-picks';
+  banner.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;';
+  banner.innerHTML = `
+    <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);border-radius:8px;padding:10px 14px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gr);margin-bottom:3px">🎯 TOP OPPORTUNITY</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--gr)">${opp ? opp.symbol : '—'}</div>
+      <div style="color:#86efac;font-size:10px;margin-top:2px">${opp ? opp.reason : ''}</div>
+    </div>
+    <div style="background:rgba(244,63,94,.06);border:1px solid rgba(244,63,94,.15);border-radius:8px;padding:10px 14px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--rd);margin-bottom:3px">⚠️ TOP AVOID</div>
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--rd)">${avoid ? avoid.symbol : '—'}</div>
+      <div style="color:#fca5a5;font-size:10px;margin-top:2px">${avoid ? avoid.reason : ''}</div>
+    </div>`;
+
+  const mgrid = macroTab.querySelector('.mgrid');
+  if (mgrid) macroTab.insertBefore(banner, mgrid);
+  else macroTab.prepend(banner);
 }
 
-// ── Call this at the end of your initialization ──
+// Load daily content on page init
 loadDailyContent();
 </script>
 </body>
