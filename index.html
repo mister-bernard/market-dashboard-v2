@@ -475,6 +475,8 @@ table.wlt{width:100%;table-layout:auto;border-collapse:collapse;font-size:10px;f
         <th class="sort-none" onclick="sortCol('chg')">Chg $</th>
         <th class="sort-none" onclick="sortCol('pct')">Chg %</th>
         <th class="sort-none" onclick="sortCol('pattern')">Pattern</th>
+        <th class="sort-none" onclick="sortCol('rsi')">RSI</th>
+        <th class="sort-none" onclick="sortCol('si')">SI%</th>
         <th class="sort-none" onclick="sortCol('vol')">Vol</th>
         <th>Resistance</th>
         <th>Support</th>
@@ -483,6 +485,7 @@ table.wlt{width:100%;table-layout:auto;border-collapse:collapse;font-size:10px;f
         <th class="sort-none" onclick="sortCol('ptl')">PT Low</th>
         <th class="sort-none" onclick="sortCol('ptm')">PT Mid</th>
         <th class="sort-none" onclick="sortCol('pth')">PT High</th>
+        <th class="sort-none" onclick="sortCol('w52')">52W Range</th>
         <th class="sort-none" onclick="sortCol('pe')">P/E</th>
         <th class="sort-none" onclick="sortCol('earn')">Earnings</th>
         <th>Group</th>
@@ -1048,6 +1051,25 @@ async function fetchAllFunds(){
   }
 }
 // --- BUILD TABLE --------------------------------------------------
+// RSI calculation from closing prices
+function calculateRSI(closes, period=14) {
+  if (!closes || closes.length < period + 1) return null;
+  let gains = 0, losses = 0;
+  for (let i = 1; i <= period; i++) {
+    const diff = closes[i] - closes[i-1];
+    if (diff > 0) gains += diff; else losses -= diff;
+  }
+  let avgGain = gains / period, avgLoss = losses / period;
+  for (let i = period + 1; i < closes.length; i++) {
+    const diff = closes[i] - closes[i-1];
+    avgGain = (avgGain * (period-1) + (diff > 0 ? diff : 0)) / period;
+    avgLoss = (avgLoss * (period-1) + (diff < 0 ? -diff : 0)) / period;
+  }
+  if (avgLoss === 0) return 100;
+  const rs = avgGain / avgLoss;
+  return Math.round(100 - (100 / (1 + rs)));
+}
+
 const GRPMAP={defense:{l:'⚔ DEFENSE',c:'sig-def'},ai:{l:'🤖 AI/TECH',c:'sig-hot'},energy:{l:'⛽ ENERGY',c:'sig-energy'},avoid:{l:'⚠ CAUTION',c:'sig-bear'},custom:{l:'➕ CUSTOM',c:'sig-neu'}};
 
 function isEarningSoon(earnDate){
@@ -1088,6 +1110,9 @@ function buildTable(){
       else if(sortKey==='action'){const ao={'BUY':1,'ADD':2,'ADD ON DIPS':3,'HOLD':4,'WATCH':5,'AVOID':6,'SELL':7,'SHORT':8};av=ao[(stockAnalysis[a.sym]||{}).action]||9;bv=ao[(stockAnalysis[b.sym]||{}).action]||9;}
       else if(sortKey==='pattern'){av=(stockAnalysis[a.sym]||{}).primary_pattern||'zzz';bv=(stockAnalysis[b.sym]||{}).primary_pattern||'zzz';}
       else if(sortKey==='vol'){av=parseFloat((stockAnalysis[a.sym]||{}).volume_ratio)||0;bv=parseFloat((stockAnalysis[b.sym]||{}).volume_ratio)||0;}
+      else if(sortKey==='rsi'){av=(stockAnalysis[a.sym]||{}).rsi||0;bv=(stockAnalysis[b.sym]||{}).rsi||0;}
+      else if(sortKey==='si'){av=(stockAnalysis[a.sym]||{}).short_interest||0;bv=(stockAnalysis[b.sym]||{}).short_interest||0;}
+      else if(sortKey==='w52'){av=(stockAnalysis[a.sym]||{}).fifty_two_week_high||0;bv=(stockAnalysis[b.sym]||{}).fifty_two_week_high||0;}
       if(typeof av==='string')return sortDir==='asc'?av.localeCompare(bv):bv.localeCompare(av);
       return sortDir==='asc'?av-bv:bv-av;
     });
@@ -1125,6 +1150,8 @@ function buildTable(){
       <td class="t-chg ${cls}">${cstr(c)}</td>
       <td class="t-pct ${cls}">${pstr(pct)}</td>
       <td><span class="pat-cell" title="${patFull.replace(/"/g,'&quot;')}" onclick="event.stopPropagation();togglePatternExp('${sym}')">${patShort}</span></td>
+      <td>${(()=>{const rsi=sa.rsi;if(rsi==null)return'—';const rc=rsi>70?'color:var(--rd)':rsi<30?'color:var(--gr)':'color:#94a3b8';return'<span style="'+rc+';font-weight:600">'+rsi+'</span>';})()}</td>
+      <td>${(()=>{const si=sa.short_interest;if(si==null)return'—';const sc=si>20?'color:var(--rd)':si>10?'color:var(--yl)':'color:#94a3b8';return'<span style="'+sc+'">'+si.toFixed(1)+'%</span>';})()}</td>
       <td><span class="${volCls}">${volTxt}</span></td>
       <td><span class="asr">${resTxt}</span></td>
       <td><span class="asr">${supTxt}</span></td>
@@ -1133,6 +1160,7 @@ function buildTable(){
       <td class="t-ptl" id="tpl-${sym}"><span class="spin"></span></td>
       <td class="t-ptm" id="tpm-${sym}"><span class="spin"></span></td>
       <td class="t-pth" id="tph-${sym}"><span class="spin"></span></td>
+      <td style="font-family:'DM Mono',monospace;font-size:9px;color:#94a3b8">${(()=>{const lo52=sa.fifty_two_week_low||(fundCache[sym]||{}).fiftyTwoWeekLow;const hi52=sa.fifty_two_week_high||(fundCache[sym]||{}).fiftyTwoWeekHigh;if(!lo52&&!hi52)return'—';return'$'+fmtB(lo52||0)+' — $'+fmtB(hi52||0);})()}</td>
       <td class="t-pe" id="tpe-${sym}"><span class="spin"></span></td>
       <td class="t-earn" id="tea-${sym}">${earnSoon?'<span style="color:#eab308">':'<span>'}${earnStr||'<span class="spin"></span>'}</span></td>
       <td><span class="sig ${gm.c}" style="font-size:8px">${gm.l}</span></td>
@@ -1157,7 +1185,7 @@ function togglePatternExp(sym){
   const secPats=(sa.secondary_patterns||[]).map(p=>`<span class="pat-pill">${p}</span>`).join('');
   const tr=document.createElement('tr');
   tr.id=`patexp-${sym}`;tr.className='pat-exp-row';
-  tr.innerHTML=`<td colspan="20"><div class="pat-exp-inner"><h5>📐 Pattern — ${sym}</h5><p>${sa.pattern_narrative||'No pattern data available.'}</p>${secPats?'<div class="pat-pills">'+secPats+'</div>':''}</div></td>`;
+  tr.innerHTML=`<td colspan="23"><div class="pat-exp-inner"><h5>📐 Pattern — ${sym}</h5><p>${sa.pattern_narrative||'No pattern data available.'}</p>${secPats?'<div class="pat-pills">'+secPats+'</div>':''}</div></td>`;
   baseRow.insertAdjacentElement('afterend',tr);
 }
 
@@ -1175,7 +1203,7 @@ function toggleExpand(sym){
   const sigs=(item?.signals||[]).map((s,j)=>`<span class="sig ${item.sigClass[j]||'sig-neu'}">${s}</span>`).join('');
   const tr=document.createElement('tr');
   tr.id=`exp-${sym}`;tr.className='exp-row';
-  tr.innerHTML=`<td colspan="20"><div class="exp-inner">
+  tr.innerHTML=`<td colspan="23"><div class="exp-inner">
     <div class="exp-block"><h5>📋 Thesis</h5><p>${item?.thesis||item?.note||'—'}</p><div class="exp-sigs">${sigs}</div></div>
     <div class="exp-block"><h5>🚀 Catalysts</h5><p>${item?.catalysts||'—'}</p></div>
     <div class="exp-block"><h5>⚠️ Risks</h5><p>${item?.risks||'—'}</p></div>
@@ -1188,7 +1216,7 @@ function sortCol(key){
   document.querySelectorAll('.wlt th').forEach(th=>th.className='sort-none');
   if(sortKey===key){sortDir=sortDir==='asc'?'desc':'asc';}else{sortKey=key;sortDir='asc';}
   const ths=[...document.querySelectorAll('.wlt th')];
-  const cols=['sym','name','trend','action','price','chg','pct','pattern','vol','','','','','ptl','ptm','pth','pe','earn','',''];
+  const cols=['sym','name','trend','action','price','chg','pct','pattern','rsi','si','vol','','','','','ptl','ptm','pth','w52','pe','earn','',''];
   const idx=cols.indexOf(key);
   if(idx>=0&&ths[idx])ths[idx].className=`sort-${sortDir}`;
   buildTable();
@@ -1945,9 +1973,25 @@ function applyStockTheses(theses) {
     if (t.thesis) { stock.thesis = t.thesis; changed = true; }
     if (t.catalysts) { stock.catalysts = t.catalysts; changed = true; }
     if (t.risks) { stock.risks = t.risks; changed = true; }
+
+    // Update fundamentals from daily AI refresh (fresher than Yahoo)
+    if (t.ptLow || t.ptMid || t.ptHigh || t.pe || t.earn) {
+      const sym = stock.sym;
+      if (!fundCache[sym]) fundCache[sym] = {};
+      if (t.pe != null) fundCache[sym].pe = t.pe;
+      if (t.ptLow) fundCache[sym].ptLow = t.ptLow;
+      if (t.ptMid) fundCache[sym].ptMid = t.ptMid;
+      if (t.ptHigh) fundCache[sym].ptHigh = t.ptHigh;
+      if (t.earn) fundCache[sym].earn = t.earn;
+      fundCache[sym]._live = true;
+      changed = true;
+    }
   }
 
-  if (changed && typeof buildCards === 'function') buildCards();
+  if (changed) {
+    if (typeof buildCards === 'function') buildCards();
+    if (typeof buildTable === 'function') buildTable();
+  }
 }
 
 function applyOptionsStrategies(strategies) {
