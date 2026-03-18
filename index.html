@@ -76,16 +76,27 @@ h2{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:14
 .wmsg{font-family:'DM Mono',monospace;font-size:10px;color:var(--mu);}
 .wmsg.ok{color:var(--gr);}.wmsg.err{color:var(--rd);}
 /* WATCHLIST TABLE */
-.wlwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-table.wlt{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mono',monospace;}
-.wlt th{text-align:left;color:var(--mu);padding:6px 9px;border-bottom:1px solid var(--bd);font-size:9px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;cursor:pointer;user-select:none;}
+.tbl-wrap{transform:rotateX(180deg);overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tbl-wrap>table{transform:rotateX(180deg);}
+table.wlt{width:100%;table-layout:auto;border-collapse:collapse;font-size:10px;font-family:'DM Mono',monospace;}
+.wlt th{text-align:left;color:var(--mu);padding:5px 6px;border-bottom:1px solid var(--bd);font-size:8px;letter-spacing:.8px;text-transform:uppercase;white-space:nowrap;cursor:pointer;user-select:none;}
 .wlt th:hover{color:var(--tx);}
 .wlt th.sort-asc::after{content:' ▲';color:var(--ac);}
 .wlt th.sort-desc::after{content:' ▼';color:var(--ac);}
 .wlt th.sort-none::after{content:' ⇅';opacity:.4;}
-.wlt td{padding:8px 9px;border-bottom:1px solid rgba(28,35,48,.6);color:#cbd5e1;white-space:nowrap;}
+.wlt td{padding:5px 6px;border-bottom:1px solid rgba(28,35,48,.6);color:#cbd5e1;white-space:nowrap;font-size:9px;}
 .wlt tr:last-child td{border-bottom:none;}
 .wlt tr.data-row:hover td{background:rgba(255,255,255,.02);cursor:pointer;}
+.wlt tr.earn-soon td{background:rgba(234,179,8,.06);} .wlt tr.earn-soon td:first-child{border-left:3px solid #eab308;}
+/* PATTERN EXPAND ROW */
+.pat-exp-row td{background:var(--sf2)!important;padding:0!important;border-bottom:1px solid var(--bd);}
+.pat-exp-inner{padding:12px 16px;font-size:11px;color:#94a3b8;line-height:1.6;font-family:'DM Mono',monospace;}
+.pat-exp-inner h5{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--yl);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.pat-pills{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;}
+.pat-pill{font-size:8px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:4px;background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25);letter-spacing:.3px;}
+.pat-cell{cursor:pointer;transition:color .15s;}.pat-cell:hover{color:var(--yl);}
+/* VOL COLUMN */
+.vol-hi{color:var(--gr);}.vol-lo{color:var(--rd);}.vol-neu{color:#94a3b8;}
 /* ANALYSIS COLUMNS */
 .abadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.5px;font-weight:500;line-height:1.4;}
 .abadge.abg{background:rgba(34,197,94,.15);color:var(--gr);border:1px solid rgba(34,197,94,.25);}
@@ -453,33 +464,34 @@ table.wlt{width:100%;border-collapse:collapse;font-size:11px;font-family:'DM Mon
     <input class="wlin" id="wlflt" type="text" placeholder="Filter…" maxlength="20" style="width:120px" oninput="buildTable()">
     <span class="wmsg" id="wmsg"></span>
   </div>
-  <div class="wlwrap">
+  <div class="tbl-wrap">
     <table class="wlt">
       <thead><tr>
         <th class="sort-none" onclick="sortCol('sym')">Ticker</th>
         <th class="sort-none" onclick="sortCol('name')">Name</th>
+        <th class="sort-none" onclick="sortCol('trend')">Trend</th>
+        <th class="sort-none" onclick="sortCol('action')">Action</th>
         <th class="sort-none" onclick="sortCol('price')">Price</th>
         <th class="sort-none" onclick="sortCol('chg')">Chg $</th>
         <th class="sort-none" onclick="sortCol('pct')">Chg %</th>
-        <th class="sort-none" onclick="sortCol('pe')">P/E</th>
-        <th class="sort-none" onclick="sortCol('ptl')">PT Low</th>
-        <th class="sort-none" onclick="sortCol('ptm')">PT Mid</th>
-        <th class="sort-none" onclick="sortCol('pth')">PT High</th>
-        <th class="sort-none" onclick="sortCol('earn')">Earnings</th>
-        <th>Group</th>
-        <th class="sort-none" onclick="sortCol('trend')">Trend</th>
-        <th>Pattern</th>
+        <th class="sort-none" onclick="sortCol('pattern')">Pattern</th>
+        <th class="sort-none" onclick="sortCol('vol')">Vol</th>
         <th>Resistance</th>
         <th>Support</th>
         <th>Bull</th>
         <th>Bear</th>
-        <th class="sort-none" onclick="sortCol('action')">Action</th>
+        <th class="sort-none" onclick="sortCol('ptl')">PT Low</th>
+        <th class="sort-none" onclick="sortCol('ptm')">PT Mid</th>
+        <th class="sort-none" onclick="sortCol('pth')">PT High</th>
+        <th class="sort-none" onclick="sortCol('pe')">P/E</th>
+        <th class="sort-none" onclick="sortCol('earn')">Earnings</th>
+        <th>Group</th>
         <th></th>
       </tr></thead>
       <tbody id="wlbody"></tbody>
     </table>
   </div>
-  <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--mu);margin-top:8px">Click header to sort · Click row for 📈 chart + AI analysis · ✕ to remove</p>
+  <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--mu);margin-top:8px">Click header to sort · Click row for 📈 chart + AI analysis · Click pattern for details · ✕ to remove</p>
 </div>
 
 <!-- DEFENSE -->
@@ -1038,6 +1050,13 @@ async function fetchAllFunds(){
 // --- BUILD TABLE --------------------------------------------------
 const GRPMAP={defense:{l:'⚔ DEFENSE',c:'sig-def'},ai:{l:'🤖 AI/TECH',c:'sig-hot'},energy:{l:'⛽ ENERGY',c:'sig-energy'},avoid:{l:'⚠ CAUTION',c:'sig-bear'},custom:{l:'➕ CUSTOM',c:'sig-neu'}};
 
+function isEarningSoon(earnDate){
+  if(!earnDate)return false;
+  const now=new Date(),ed=new Date(earnDate+'T00:00:00');
+  if(isNaN(ed))return false;
+  const diff=Math.abs(ed-now)/(1000*60*60*24);
+  return diff<=14;
+}
 function buildTable(){
   const tbody=document.getElementById('wlbody');if(!tbody)return;
   tbody.innerHTML='';
@@ -1067,6 +1086,8 @@ function buildTable(){
       else if(sortKey==='earn'){av=a.f.earn||'9999';bv=b.f.earn||'9999';}
       else if(sortKey==='trend'){const to={'UPTREND':1,'BASING':2,'SIDEWAYS':2,'DOWNTREND':3};av=to[(stockAnalysis[a.sym]||{}).trend]||9;bv=to[(stockAnalysis[b.sym]||{}).trend]||9;}
       else if(sortKey==='action'){const ao={'BUY':1,'ADD':2,'ADD ON DIPS':3,'HOLD':4,'WATCH':5,'AVOID':6,'SELL':7,'SHORT':8};av=ao[(stockAnalysis[a.sym]||{}).action]||9;bv=ao[(stockAnalysis[b.sym]||{}).action]||9;}
+      else if(sortKey==='pattern'){av=(stockAnalysis[a.sym]||{}).primary_pattern||'zzz';bv=(stockAnalysis[b.sym]||{}).primary_pattern||'zzz';}
+      else if(sortKey==='vol'){av=parseFloat((stockAnalysis[a.sym]||{}).volume_ratio)||0;bv=parseFloat((stockAnalysis[b.sym]||{}).volume_ratio)||0;}
       if(typeof av==='string')return sortDir==='asc'?av.localeCompare(bv):bv.localeCompare(av);
       return sortDir==='asc'?av-bv:bv-av;
     });
@@ -1076,47 +1097,68 @@ function buildTable(){
     const cls=pcls(pct||0);
     const gm=GRPMAP[item.group]||GRPMAP.custom;
     const isNew=item.cardClass?.includes('new-card');
-
-    const tr=document.createElement('tr');
-    tr.id=`row-${sym}`;tr.className='data-row';
-    tr.onclick=(e)=>{if(!e.target.classList.contains('rmbtn'))openChart(sym);};
     const sa=stockAnalysis[sym]||{};
     const trendCls=sa.trend==='UPTREND'?'abg':sa.trend==='DOWNTREND'?'abr':'aby';
     const actCls=['BUY','ADD','ADD ON DIPS'].includes(sa.action)?'abg':['SELL','AVOID','SHORT'].includes(sa.action)?'abr':sa.action==='WATCH'?'aby':sa.action?'abb':'aby';
-    const patTxt=(sa.pattern_narrative||'—').slice(0,40);
+    const patShort=sa.primary_pattern||(sa.pattern_narrative||'—').slice(0,30);
     const patFull=sa.pattern_narrative||'';
     const resTxt=(sa.resistance||[]).join(' / ')||'—';
     const supTxt=(sa.support||[]).join(' / ')||'—';
     const bullTxt=sa.bullish_case?.trigger||'—';
     const bearTxt=sa.bearish_case?.trigger||'—';
+    const volRatio=sa.volume_ratio||'';
+    const volNum=parseFloat(volRatio)||0;
+    const volCls=volNum>=1.5?'vol-hi':volNum>0&&volNum<0.7?'vol-lo':'vol-neu';
+    const volTxt=volRatio?(volNum.toFixed(1)+'x'):'—';
+    const earnStr=f.earn||'';
+    const earnSoon=isEarningSoon(earnStr);
+
+    const tr=document.createElement('tr');
+    tr.id=`row-${sym}`;tr.className='data-row'+(earnSoon?' earn-soon':'');
+    tr.onclick=(e)=>{if(!e.target.classList.contains('rmbtn')&&!e.target.closest('.pat-cell'))openChart(sym);};
     tr.innerHTML=`
-      <td><span class="tticker ${cls}">${sym}</span>${isNew?'<span class="sig sig-new" style="font-size:8px;vertical-align:middle;margin-left:3px">NEW</span>':''}</td>
+      <td><span class="tticker ${cls}">${sym}</span>${isNew?'<span class="sig sig-new" style="font-size:7px;vertical-align:middle;margin-left:2px">NEW</span>':''}</td>
       <td><span class="tname">${item.name}</span></td>
-      <td class="t-price"><span class="${cls}" style="font-weight:700">${price?fmtB(price):'<span class="skel" style="width:48px">&nbsp;</span>'}</span></td>
+      <td>${sa.trend?'<span class="abadge '+trendCls+'">'+sa.trend+'</span>':'—'}</td>
+      <td>${sa.action?'<span class="abadge '+actCls+'">'+sa.action+'</span>':'—'}</td>
+      <td class="t-price"><span class="${cls}" style="font-weight:700">${price?fmtB(price):'<span class="skel" style="width:42px">&nbsp;</span>'}</span></td>
       <td class="t-chg ${cls}">${cstr(c)}</td>
       <td class="t-pct ${cls}">${pstr(pct)}</td>
-      <td class="t-pe" id="tpe-${sym}"><span class="spin"></span></td>
-      <td class="t-ptl" id="tpl-${sym}"><span class="spin"></span></td>
-      <td class="t-ptm" id="tpm-${sym}"><span class="spin"></span></td>
-      <td class="t-pth" id="tph-${sym}"><span class="spin"></span></td>
-      <td class="t-earn" id="tea-${sym}"><span class="spin"></span></td>
-      <td><span class="sig ${gm.c}">${gm.l}</span></td>
-      <td>${sa.trend?'<span class="abadge '+trendCls+'">'+sa.trend+'</span>':'—'}</td>
-      <td><span class="atrunc" title="${patFull.replace(/"/g,'&quot;')}">${patTxt}</span></td>
+      <td><span class="pat-cell" title="${patFull.replace(/"/g,'&quot;')}" onclick="event.stopPropagation();togglePatternExp('${sym}')">${patShort}</span></td>
+      <td><span class="${volCls}">${volTxt}</span></td>
       <td><span class="asr">${resTxt}</span></td>
       <td><span class="asr">${supTxt}</span></td>
       <td><span class="abull" title="${bullTxt.replace(/"/g,'&quot;')}">${bullTxt}</span></td>
       <td><span class="abear" title="${bearTxt.replace(/"/g,'&quot;')}">${bearTxt}</span></td>
-      <td>${sa.action?'<span class="abadge '+actCls+'">'+sa.action+'</span>':'—'}</td>
+      <td class="t-ptl" id="tpl-${sym}"><span class="spin"></span></td>
+      <td class="t-ptm" id="tpm-${sym}"><span class="spin"></span></td>
+      <td class="t-pth" id="tph-${sym}"><span class="spin"></span></td>
+      <td class="t-pe" id="tpe-${sym}"><span class="spin"></span></td>
+      <td class="t-earn" id="tea-${sym}">${earnSoon?'<span style="color:#eab308">':'<span>'}${earnStr||'<span class="spin"></span>'}</span></td>
+      <td><span class="sig ${gm.c}" style="font-size:8px">${gm.l}</span></td>
       <td><button class="rmbtn" onclick="removeTicker('${sym}')">✕</button></td>
     `;
     tbody.appendChild(tr);
-    // If fundCache already has data, fill immediately
     updateFundRow(sym);
   });
 
   const cnt=document.getElementById('wlcnt');
   if(cnt)cnt.textContent=`${watchlist.length} STOCKS · REAL-TIME`;
+}
+let patternExpSym=null;
+function togglePatternExp(sym){
+  const existing=document.getElementById(`patexp-${sym}`);
+  if(existing){existing.remove();if(patternExpSym===sym){patternExpSym=null;return;}}
+  if(patternExpSym){const old=document.getElementById(`patexp-${patternExpSym}`);if(old)old.remove();}
+  patternExpSym=sym;
+  const sa=stockAnalysis[sym]||{};
+  const baseRow=document.getElementById(`row-${sym}`);
+  if(!baseRow)return;
+  const secPats=(sa.secondary_patterns||[]).map(p=>`<span class="pat-pill">${p}</span>`).join('');
+  const tr=document.createElement('tr');
+  tr.id=`patexp-${sym}`;tr.className='pat-exp-row';
+  tr.innerHTML=`<td colspan="20"><div class="pat-exp-inner"><h5>📐 Pattern — ${sym}</h5><p>${sa.pattern_narrative||'No pattern data available.'}</p>${secPats?'<div class="pat-pills">'+secPats+'</div>':''}</div></td>`;
+  baseRow.insertAdjacentElement('afterend',tr);
 }
 
 // --- EXPAND ROW ---------------------------------------------------
@@ -1133,7 +1175,7 @@ function toggleExpand(sym){
   const sigs=(item?.signals||[]).map((s,j)=>`<span class="sig ${item.sigClass[j]||'sig-neu'}">${s}</span>`).join('');
   const tr=document.createElement('tr');
   tr.id=`exp-${sym}`;tr.className='exp-row';
-  tr.innerHTML=`<td colspan="19"><div class="exp-inner">
+  tr.innerHTML=`<td colspan="20"><div class="exp-inner">
     <div class="exp-block"><h5>📋 Thesis</h5><p>${item?.thesis||item?.note||'—'}</p><div class="exp-sigs">${sigs}</div></div>
     <div class="exp-block"><h5>🚀 Catalysts</h5><p>${item?.catalysts||'—'}</p></div>
     <div class="exp-block"><h5>⚠️ Risks</h5><p>${item?.risks||'—'}</p></div>
@@ -1146,7 +1188,7 @@ function sortCol(key){
   document.querySelectorAll('.wlt th').forEach(th=>th.className='sort-none');
   if(sortKey===key){sortDir=sortDir==='asc'?'desc':'asc';}else{sortKey=key;sortDir='asc';}
   const ths=[...document.querySelectorAll('.wlt th')];
-  const cols=['sym','name','price','chg','pct','pe','ptl','ptm','pth','earn','','trend','','','','','','action'];
+  const cols=['sym','name','trend','action','price','chg','pct','pattern','vol','','','','','ptl','ptm','pth','pe','earn','',''];
   const idx=cols.indexOf(key);
   if(idx>=0&&ths[idx])ths[idx].className=`sort-${sortDir}`;
   buildTable();
