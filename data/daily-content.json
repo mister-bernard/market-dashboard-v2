@@ -1,0 +1,3006 @@
+{
+  "date": "2026-03-20",
+  "generated_at": "2026-03-20T02:23:25.365Z",
+  "market_regime": "RISK-OFF",
+  "macro_headline": "Oil Volatility Drives Fed Hawkish Turn",
+  "macro_cards": [
+    {
+      "icon": "📉",
+      "title": "MARKETS SELLING OFF — SPY $660.5 DOWN 0.16%, VIX 25+",
+      "body": "Major indices closed lower Thursday with SPY at $660.5, down from $661.54. QQQ fell to $594 (-0.14%) while DIA dropped to $461.06 (-0.44%). The VIX spiked above 25 as geopolitical tensions and oil volatility rattled risk assets. Pre-market futures show modest recovery with ES +17.75 and NQ +51.75, but momentum remains fragile. Small caps outperformed with IWM gaining 0.62% to $247.59, suggesting some rotation into domestic plays. Defense and energy sectors led gains while tech mega-caps faced selling pressure.",
+      "sentiment": "bearish"
+    },
+    {
+      "icon": "⛽",
+      "title": "OIL SHOCK — BRENT BRIEFLY $119, WTI $93.14 DOWN 2.4%",
+      "body": "Crude oil markets experienced extreme volatility with Brent crude spiking to $119 per barrel before retreating. WTI settled at $93.14, down $2.41 from highs. Iran's attacks on Gulf energy facilities including Qatar sites injected severe supply shock fears. USO ETF fell 3.57% to $117.36 as markets digested potential $166 barrel scenarios if Strait of Hormuz closure persists. Treasury Secretary Bessent floated easing sanctions on Iranian oil already loaded on tankers to shore up supplies. Energy companies and defense contractors remain primary beneficiaries of this crisis.",
+      "sentiment": "warning"
+    },
+    {
+      "icon": "🏛️",
+      "title": "FED HAWKISH HOLD — NO RATE CUTS PRICED FOR 2026",
+      "body": "The Federal Reserve held rates steady Wednesday as inflation concerns trump labor market weakness. Bond traders eliminated all expectations for rate cuts this year following the decision. PPI surged 0.7% MoM in February, well above the 0.3% forecast, marking the biggest monthly jump in over a year. Powell's hawkish tone emphasized inflation risks from energy price spikes. 10-year yields rose to 4.28%, pressuring rate-sensitive growth stocks. Mortgage rates jumped above 6.22%, further dampening housing market prospects. The Fed's dual mandate is clearly tilting toward inflation control over employment support.",
+      "sentiment": "bearish"
+    },
+    {
+      "icon": "💳",
+      "title": "CONSUMER WEAKNESS — SPENDING DOWN 9% YOY AMID INFLATION",
+      "body": "Consumer Edge reports sporting goods spending declined 9% year-over-year in the three months ended January 2026, highlighting broad discretionary weakness. Tariffs, inflation, and middle-income pressure are weighing on non-essential purchases. This follows broader retail headwinds as consumers prioritize necessities over discretionary items. Home Depot fell 0.83% to $328.18, reflecting concerns about big-ticket purchases. Consumer staples and value plays may outperform as spending patterns shift. The data suggests recession risks are mounting despite equity market resilience.",
+      "sentiment": "bearish"
+    },
+    {
+      "icon": "🛡️",
+      "title": "DEFENSE SUPERCYCLE — $200B PENTAGON REQUEST, CONTRACTOR SURGE",
+      "body": "The Defense Department requested over $200 billion for Iran war operations and stock replenishment. Defense billionaire fortunes surged $28 billion in 20 days of conflict, highlighting the sector's profit potential. Palantir gained 2.04% to $155.87 on continued military AI demand. Kratos held steady at $92.75 while Palo Alto Networks rose 0.48% to $169.71. The arms race dynamic is accelerating with global military spending at record levels. Defense contractors face multi-year order visibility as geopolitical tensions remain elevated. This represents a structural shift toward higher defense budgets globally.",
+      "sentiment": "bullish"
+    },
+    {
+      "icon": "💾",
+      "title": "MICRON PARADOX — RECORD REVENUE BUT STOCK FALLS 3.2%",
+      "body": "Micron reported record AI-fueled revenue but shares dropped 3.22% to $446.89 on margin peak concerns and aggressive capex spending. The CEO stated the company can't deliver enough memory to key customers, highlighting supply constraints. Despite blowout fundamentals, investors are questioning whether margins have peaked and future growth rates. This reflects broader market skepticism toward AI beneficiaries trading at premium valuations. Memory demand remains robust but execution risks are rising. The disconnect between fundamentals and stock performance suggests caution in semiconductor momentum trades.",
+      "sentiment": "warning"
+    },
+    {
+      "icon": "🚀",
+      "title": "SPACE TECH MOMENTUM — NVIDIA GTC SHOWCASES ORBITAL DATA CENTERS",
+      "body": "CEO Jensen Huang unveiled plans for AI data centers in space, marking a new frontier for compute infrastructure. Applied Digital gained 0.21% to $26.71 while CoreWeave fell 2.6% to $80.69 on broader tech selling. The space computing theme could accelerate as terrestrial data center constraints mount. NuScale Power held steady at $11.99 as nuclear power gains traction for AI workloads. SpaceX AI initiatives with Tesla's continued chip orders at scale demonstrate the converging mega-trends. This represents a long-term structural growth opportunity beyond current market volatility.",
+      "sentiment": "bullish"
+    },
+    {
+      "icon": "💰",
+      "title": "CRYPTO SELLOFF — BITCOIN DROPS BELOW $70K AMID RISK-OFF",
+      "body": "Bitcoin fell below $70,000 for the first time in over a week as energy price surges triggered broad risk asset selling. The Fed's hawkish stance strengthened the dollar, pressuring crypto valuations. Over $450 million in crypto liquidations occurred in 24 hours as bullish positions unwound. Crypto.com announced 12% workforce cuts citing AI integration, adding to sector headwinds. The correlation between crypto and risk assets remains high during geopolitical stress. Institutional adoption continues but macro headwinds are overwhelming fundamental support. Recovery depends on stabilization of oil prices and Fed policy outlook.",
+      "sentiment": "bearish"
+    },
+    {
+      "icon": "📊",
+      "title": "KEY CATALYSTS — EARNINGS SEASON WINDS DOWN, FED SPEAK AHEAD",
+      "body": "With Q4 earnings largely complete, focus shifts to forward guidance and Fed communications. Notable upcoming catalysts include March PMI data (March 22), consumer confidence (March 25), and Core PCE inflation (March 28). Fed speakers including Powell, Williams, and Bullard will likely reinforce the hawkish pivot given oil price developments. Nvidia's GTC conference wraps up with potential AI infrastructure announcements. Geopolitical developments in the Gulf remain the key wildcard for energy prices and market sentiment. Options expiration next Friday could amplify volatility in current environment.",
+      "sentiment": "neutral"
+    }
+  ],
+  "stock_theses": {
+    "PLTR": {
+      "signals": [
+        "DEFENSE AI BOOM",
+        "GOV CONTRACT CYCLE",
+        "BREAKOUT MOMENTUM"
+      ],
+      "signalClasses": [
+        "sig-def",
+        "sig-hot",
+        "sig-bull"
+      ],
+      "thesis": "Palantir benefits from accelerated defense AI spending as military applications drive sustained demand. Trading above both SMAs with strong volume confirms institutional accumulation.",
+      "catalysts": "Q1 earnings, new defense contracts, AI model deployments",
+      "risks": "Valuation concerns, government budget constraints",
+      "dayTradeEntry": "$153-$155",
+      "dayTradeTarget": "$158-$162",
+      "dayTradeStop": "$151",
+      "pe": 89,
+      "ptLow": 145,
+      "ptMid": 175,
+      "ptHigh": 220,
+      "earn": "2026-05-08"
+    },
+    "KTOS": {
+      "signals": [
+        "DEFENSE SPENDING",
+        "UAV DEMAND",
+        "SIDEWAYS CONSOLIDATION"
+      ],
+      "signalClasses": [
+        "sig-def",
+        "sig-neu",
+        "sig-bull"
+      ],
+      "thesis": "Kratos Defense positioned for drone warfare demand escalation but stock consolidating below $100 resistance. Pentagon's $200B request supports medium-term outlook.",
+      "catalysts": "Drone contract awards, defense budget allocation",
+      "risks": "Competition from larger primes, margin pressure",
+      "dayTradeEntry": "$90-$92",
+      "dayTradeTarget": "$95-$98",
+      "dayTradeStop": "$87",
+      "pe": 28,
+      "ptLow": 95,
+      "ptMid": 110,
+      "ptHigh": 130,
+      "earn": "2026-05-14"
+    },
+    "PANW": {
+      "signals": [
+        "CYBERSECURITY DEMAND",
+        "IRAN WAR BOOST",
+        "TECHNICAL BREAKOUT"
+      ],
+      "signalClasses": [
+        "sig-def",
+        "sig-bull",
+        "sig-hot"
+      ],
+      "thesis": "Palo Alto Networks benefits from heightened cybersecurity needs amid geopolitical tensions. Strong fundamentals with improving technical setup above $168 support.",
+      "catalysts": "Q2 earnings, government contract wins, product updates",
+      "risks": "Competition, enterprise spending cuts",
+      "dayTradeEntry": "$168-$170",
+      "dayTradeTarget": "$172-$175",
+      "dayTradeStop": "$166",
+      "pe": 45,
+      "ptLow": 175,
+      "ptMid": 195,
+      "ptHigh": 220,
+      "earn": "2026-05-21"
+    },
+    "SERV": {
+      "signals": [
+        "DELIVERY AUTOMATION",
+        "WEAK MOMENTUM",
+        "BELOW SUPPORT"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Serve Robotics faces headwinds from consumer spending weakness and regulatory uncertainty. Trading below key moving averages with deteriorating technicals.",
+      "catalysts": "Partnership announcements, deployment metrics",
+      "risks": "Funding concerns, competition from larger players",
+      "dayTradeEntry": "$8.80-$9.20",
+      "dayTradeTarget": "$9.50-$9.80",
+      "dayTradeStop": "$8.50",
+      "pe": null,
+      "ptLow": 8,
+      "ptMid": 12,
+      "ptHigh": 18,
+      "earn": "2026-05-12"
+    },
+    "NVDA": {
+      "signals": [
+        "GTC EVENT",
+        "AI INFRASTRUCTURE",
+        "CONSOLIDATION"
+      ],
+      "signalClasses": [
+        "sig-hot",
+        "sig-neu"
+      ],
+      "thesis": "Nvidia's GTC conference showcased space computing initiatives but stock faces near-term consolidation below $180. Long-term AI thesis intact.",
+      "catalysts": "Data center orders, automotive partnerships, new chip launches",
+      "risks": "Competition from custom silicon, China tensions",
+      "dayTradeEntry": "$176-$179",
+      "dayTradeTarget": "$182-$186",
+      "dayTradeStop": "$174",
+      "pe": 45,
+      "ptLow": 190,
+      "ptMid": 230,
+      "ptHigh": 280,
+      "earn": "2026-05-22"
+    },
+    "MSFT": {
+      "signals": [
+        "AI INTEGRATION",
+        "CLOUD DEMAND",
+        "WEAK TECHNICALS"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Microsoft's AI investments face scrutiny amid margin compression concerns. Trading below 50-SMA with institutional selling pressure evident.",
+      "catalysts": "Azure growth metrics, AI revenue disclosure, enterprise wins",
+      "risks": "Cloud competition, AI investment ROI questions",
+      "dayTradeEntry": "$385-$390",
+      "dayTradeTarget": "$395-$400",
+      "dayTradeStop": "$382",
+      "pe": 32,
+      "ptLow": 420,
+      "ptMid": 450,
+      "ptHigh": 490,
+      "earn": "2026-04-24"
+    },
+    "GOOGL": {
+      "signals": [
+        "AI COMPETITION",
+        "AD MARKET PRESSURE",
+        "RANGE BOUND"
+      ],
+      "signalClasses": [
+        "sig-neu",
+        "sig-bear"
+      ],
+      "thesis": "Google faces AI competition challenges while advertising market shows signs of weakness. Stock trading sideways around $307 with limited catalysts.",
+      "catalysts": "Gemini adoption, cloud growth, regulatory developments",
+      "risks": "OpenAI competition, antitrust pressure, ad spending cuts",
+      "dayTradeEntry": "$305-$308",
+      "dayTradeTarget": "$312-$315",
+      "dayTradeStop": "$302",
+      "pe": 24,
+      "ptLow": 320,
+      "ptMid": 360,
+      "ptHigh": 400,
+      "earn": "2026-04-29"
+    },
+    "META": {
+      "signals": [
+        "METAVERSE REALITY CHECK",
+        "AI CAPEX SURGE",
+        "BREAKDOWN"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Meta faces pressure from Reality Labs losses and massive AI infrastructure spending. Stock breaking down below $610 with momentum deteriorating.",
+      "catalysts": "VR/AR adoption metrics, AI assistant rollout, cost controls",
+      "risks": "Metaverse ROI concerns, Apple competition, regulatory issues",
+      "dayTradeEntry": "$600-$608",
+      "dayTradeTarget": "$615-$620",
+      "dayTradeStop": "$595",
+      "pe": 26,
+      "ptLow": 580,
+      "ptMid": 650,
+      "ptHigh": 720,
+      "earn": "2026-04-30"
+    },
+    "AMZN": {
+      "signals": [
+        "CLOUD DECELERATION",
+        "RETAIL HEADWINDS",
+        "SUPPORT TEST"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Amazon confronts cloud growth deceleration and retail spending weakness. Stock testing critical support around $208 with risk of further decline.",
+      "catalysts": "AWS growth rates, Prime membership trends, AI services",
+      "risks": "Cloud competition, consumer spending cuts, logistics costs",
+      "dayTradeEntry": "$206-$209",
+      "dayTradeTarget": "$212-$216",
+      "dayTradeStop": "$204",
+      "pe": 55,
+      "ptLow": 220,
+      "ptMid": 250,
+      "ptHigh": 290,
+      "earn": "2026-05-01"
+    },
+    "AVGO": {
+      "signals": [
+        "AI CHIP DEMAND",
+        "APPLE EXPOSURE",
+        "RECOVERY ATTEMPT"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-neu"
+      ],
+      "thesis": "Broadcom benefits from AI networking chip demand but faces Apple exposure risks. Stock attempting recovery from $315 lows with improving momentum.",
+      "catalysts": "AI accelerator orders, iPhone component demand, data center wins",
+      "risks": "Apple dependency, semiconductor cycle, competition",
+      "dayTradeEntry": "$316-$320",
+      "dayTradeTarget": "$325-$330",
+      "dayTradeStop": "$312",
+      "pe": 28,
+      "ptLow": 340,
+      "ptMid": 380,
+      "ptHigh": 420,
+      "earn": "2026-06-12"
+    },
+    "MU": {
+      "signals": [
+        "MEMORY SHORTAGE",
+        "MARGIN PEAK FEARS",
+        "POST-EARNINGS SELLOFF"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-hot"
+      ],
+      "thesis": "Micron's record revenue couldn't overcome margin peak concerns and aggressive capex plans. Stock facing technical breakdown despite strong fundamentals.",
+      "catalysts": "Memory pricing trends, AI customer additions, capacity expansion",
+      "risks": "Cyclical downturn, competition from Samsung/SK Hynix",
+      "dayTradeEntry": "$420-$450",
+      "dayTradeTarget": "$460-$480",
+      "dayTradeStop": "$410",
+      "pe": 22,
+      "ptLow": 480,
+      "ptMid": 520,
+      "ptHigh": 580,
+      "earn": "2026-06-18"
+    },
+    "AMD": {
+      "signals": [
+        "NVIDIA ALTERNATIVE",
+        "DATA CENTER GAINS",
+        "MOMENTUM BUILD"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-hot"
+      ],
+      "thesis": "AMD gaining data center market share with MI300 series success. Stock showing relative strength with breakout above $200 resistance level.",
+      "catalysts": "Data center GPU wins, EPYC adoption, AI partnerships",
+      "risks": "Nvidia competition, execution challenges, supply constraints",
+      "dayTradeEntry": "$200-$205",
+      "dayTradeTarget": "$208-$215",
+      "dayTradeStop": "$195",
+      "pe": 42,
+      "ptLow": 180,
+      "ptMid": 220,
+      "ptHigh": 260,
+      "earn": "2026-04-30"
+    },
+    "CRWV": {
+      "signals": [
+        "AI INFRASTRUCTURE",
+        "PRIVATE MARKET DARLING",
+        "VOLATILITY"
+      ],
+      "signalClasses": [
+        "sig-hot",
+        "sig-bear"
+      ],
+      "thesis": "CoreWeave's AI cloud platform sees massive demand but stock faces valuation concerns and technical weakness. High-beta AI infrastructure play.",
+      "catalysts": "Customer additions, capacity expansions, potential IPO details",
+      "risks": "Valuation bubble, competition from hyperscalers",
+      "dayTradeEntry": "$78-$82",
+      "dayTradeTarget": "$85-$90",
+      "dayTradeStop": "$75",
+      "pe": null,
+      "ptLow": 75,
+      "ptMid": 95,
+      "ptHigh": 125,
+      "earn": "2026-05-15"
+    },
+    "COHR": {
+      "signals": [
+        "LASER TECHNOLOGY",
+        "AI HARDWARE DEMAND",
+        "BREAKOUT SURGE"
+      ],
+      "signalClasses": [
+        "sig-hot",
+        "sig-bull"
+      ],
+      "thesis": "Coherent Corp surged 7.1% on laser technology demand for AI hardware manufacturing. Strong technical breakout above $260 resistance confirms momentum.",
+      "catalysts": "Semiconductor equipment orders, automotive lidar, datacom growth",
+      "risks": "Cyclical exposure, competition, customer concentration",
+      "dayTradeEntry": "$270-$275",
+      "dayTradeTarget": "$280-$290",
+      "dayTradeStop": "$265",
+      "pe": 35,
+      "ptLow": 260,
+      "ptMid": 300,
+      "ptHigh": 350,
+      "earn": "2026-05-06"
+    },
+    "APLD": {
+      "signals": [
+        "DIGITAL INFRASTRUCTURE",
+        "HPC HOSTING",
+        "CONSOLIDATION"
+      ],
+      "signalClasses": [
+        "sig-neu",
+        "sig-hot"
+      ],
+      "thesis": "Applied Digital provides HPC hosting for AI workloads but stock consolidating around $26-27 range. Beneficiary of data center capacity constraints.",
+      "catalysts": "Customer wins, facility expansions, partnership announcements",
+      "risks": "Competition from cloud giants, power costs, customer concentration",
+      "dayTradeEntry": "$25.50-$27",
+      "dayTradeTarget": "$28-$30",
+      "dayTradeStop": "$25",
+      "pe": null,
+      "ptLow": 30,
+      "ptMid": 40,
+      "ptHigh": 55,
+      "earn": "2026-05-09"
+    },
+    "VRT": {
+      "signals": [
+        "TELECOM MODERNIZATION",
+        "5G INFRASTRUCTURE",
+        "UPTREND"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-hot"
+      ],
+      "thesis": "Vertiv benefits from data center cooling and power infrastructure demand. Stock in solid uptrend above both moving averages with strong momentum.",
+      "catalysts": "Data center builds, edge computing growth, international expansion",
+      "risks": "Supply chain issues, competition, economic slowdown impact",
+      "dayTradeEntry": "$265-$270",
+      "dayTradeTarget": "$275-$285",
+      "dayTradeStop": "$260",
+      "pe": 45,
+      "ptLow": 250,
+      "ptMid": 290,
+      "ptHigh": 330,
+      "earn": "2026-04-28"
+    },
+    "ANET": {
+      "signals": [
+        "CLOUD NETWORKING",
+        "AI DATA CENTER",
+        "RANGE BOUND"
+      ],
+      "signalClasses": [
+        "sig-neu",
+        "sig-bull"
+      ],
+      "thesis": "Arista Networks well-positioned for AI data center networking needs but stock trading sideways around $136. Waiting for breakout catalyst.",
+      "catalysts": "AI cluster wins, cloud provider spending, product launches",
+      "risks": "Competition from Cisco/Juniper, spending delays",
+      "dayTradeEntry": "$134-$136",
+      "dayTradeTarget": "$138-$142",
+      "dayTradeStop": "$132",
+      "pe": 38,
+      "ptLow": 145,
+      "ptMid": 165,
+      "ptHigh": 185,
+      "earn": "2026-05-02"
+    },
+    "NOW": {
+      "signals": [
+        "ENTERPRISE SOFTWARE",
+        "AI WORKFLOW",
+        "PRESSURE"
+      ],
+      "signalClasses": [
+        "sig-neu",
+        "sig-bear"
+      ],
+      "thesis": "ServiceNow faces enterprise spending scrutiny despite AI workflow opportunities. Stock under pressure below $115 with weakening fundamentals backdrop.",
+      "catalysts": "AI agent deployments, subscription growth, enterprise wins",
+      "risks": "Economic slowdown, competition, high valuation",
+      "dayTradeEntry": "$112-$114",
+      "dayTradeTarget": "$116-$120",
+      "dayTradeStop": "$110",
+      "pe": 65,
+      "ptLow": 125,
+      "ptMid": 145,
+      "ptHigh": 170,
+      "earn": "2026-04-24"
+    },
+    "APP": {
+      "signals": [
+        "DIGITAL TRANSFORMATION",
+        "ENTERPRISE APPS",
+        "DECLINE"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "AppLovin faces mobile advertising headwinds and increased competition. Stock declining from $442 highs with deteriorating technical setup.",
+      "catalysts": "Gaming partnerships, ad platform improvements, international expansion",
+      "risks": "iOS privacy changes, competition, economic sensitivity",
+      "dayTradeEntry": "$435-$442",
+      "dayTradeTarget": "$450-$460",
+      "dayTradeStop": "$425",
+      "pe": 28,
+      "ptLow": 420,
+      "ptMid": 480,
+      "ptHigh": 540,
+      "earn": "2026-05-07"
+    },
+    "TER": {
+      "signals": [
+        "SEMICONDUCTOR TESTING",
+        "AI CHIP QA",
+        "RECOVERY"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-hot"
+      ],
+      "thesis": "Teradyne benefits from increased semiconductor testing needs for AI chips. Stock showing recovery momentum above $300 with improving outlook.",
+      "catalysts": "AI chip testing demand, automotive semiconductor growth",
+      "risks": "Semiconductor cycle, competition, customer concentration",
+      "dayTradeEntry": "$298-$302",
+      "dayTradeTarget": "$308-$315",
+      "dayTradeStop": "$295",
+      "pe": 32,
+      "ptLow": 290,
+      "ptMid": 330,
+      "ptHigh": 380,
+      "earn": "2026-04-23"
+    },
+    "SNDK": {
+      "signals": [
+        "STORAGE DEMAND",
+        "AI DATA GROWTH",
+        "MOMENTUM SURGE"
+      ],
+      "signalClasses": [
+        "sig-hot",
+        "sig-bull"
+      ],
+      "thesis": "SanDisk benefits from explosive AI data storage needs driving flash memory demand. Stock surging on strong momentum above $750 level.",
+      "catalysts": "Data center SSD demand, mobile storage growth, pricing trends",
+      "risks": "Memory cycle, competition, supply chain issues",
+      "dayTradeEntry": "$760-$775",
+      "dayTradeTarget": "$785-$800",
+      "dayTradeStop": "$745",
+      "pe": 25,
+      "ptLow": 720,
+      "ptMid": 820,
+      "ptHigh": 920,
+      "earn": "2026-05-16"
+    },
+    "CRCL": {
+      "signals": [
+        "STABLECOIN ISSUER",
+        "CRYPTO CORRELATION",
+        "SELLOFF"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-hot"
+      ],
+      "thesis": "Circle faces headwinds from crypto market selloff and regulatory uncertainty around stablecoins. Stock declining from recent highs above $130.",
+      "catalysts": "Regulatory clarity, USDC adoption, institutional partnerships",
+      "risks": "Crypto volatility, regulatory crackdown, competition",
+      "dayTradeEntry": "$125-$130",
+      "dayTradeTarget": "$135-$140",
+      "dayTradeStop": "$120",
+      "pe": null,
+      "ptLow": 110,
+      "ptMid": 150,
+      "ptHigh": 200,
+      "earn": "2026-05-13"
+    },
+    "TSLA": {
+      "signals": [
+        "EV DEMAND CONCERNS",
+        "CHINA WEAKNESS",
+        "BREAKDOWN"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Tesla faces EV demand headwinds and China market weakness. Stock breaking down below $380 with deteriorating technical and fundamental outlook.",
+      "catalysts": "Robotaxi updates, energy storage growth, FSD progress",
+      "risks": "EV competition, China geopolitics, Musk distraction",
+      "dayTradeEntry": "$375-$382",
+      "dayTradeTarget": "$388-$395",
+      "dayTradeStop": "$370",
+      "pe": 45,
+      "ptLow": 350,
+      "ptMid": 420,
+      "ptHigh": 500,
+      "earn": "2026-04-23"
+    },
+    "SMR": {
+      "signals": [
+        "NUCLEAR RENAISSANCE",
+        "AI POWER NEEDS",
+        "CONSOLIDATION"
+      ],
+      "signalClasses": [
+        "sig-energy",
+        "sig-neu"
+      ],
+      "thesis": "NuScale Power positioned for nuclear energy renaissance driven by AI data center power needs. Stock consolidating around $12 with long-term potential.",
+      "catalysts": "Reactor deployments, data center partnerships, regulatory approvals",
+      "risks": "Regulatory delays, competition, execution challenges",
+      "dayTradeEntry": "$11.50-$12.20",
+      "dayTradeTarget": "$12.80-$13.50",
+      "dayTradeStop": "$11.20",
+      "pe": null,
+      "ptLow": 15,
+      "ptMid": 25,
+      "ptHigh": 40,
+      "earn": "2026-05-10"
+    },
+    "LLY": {
+      "signals": [
+        "GLP-1 DOMINANCE",
+        "OBESITY MARKET",
+        "SIDEWAYS"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-neu"
+      ],
+      "thesis": "Eli Lilly maintains obesity drug leadership with Mounjaro/Zepbound but stock consolidating around $917. Supply constraints limit near-term upside.",
+      "catalysts": "Supply improvements, new indications, competition developments",
+      "risks": "Competition from Novo Nordisk, pricing pressure, supply issues",
+      "dayTradeEntry": "$915-$920",
+      "dayTradeTarget": "$930-$940",
+      "dayTradeStop": "$905",
+      "pe": 48,
+      "ptLow": 880,
+      "ptMid": 1000,
+      "ptHigh": 1150,
+      "earn": "2026-04-29"
+    },
+    "NVO": {
+      "signals": [
+        "OZEMPIC COMPETITION",
+        "DIABETES MARKET",
+        "DECLINE"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Novo Nordisk faces intensifying competition in diabetes/obesity market while managing supply constraints. Stock declining below $38 support level.",
+      "catalysts": "Supply expansion, new drug launches, market share data",
+      "risks": "Lilly competition, pricing pressure, regulatory issues",
+      "dayTradeEntry": "$36.50-$37.50",
+      "dayTradeTarget": "$38.50-$39.50",
+      "dayTradeStop": "$35.50",
+      "pe": 32,
+      "ptLow": 85,
+      "ptMid": 110,
+      "ptHigh": 135,
+      "earn": "2026-05-01"
+    },
+    "UNH": {
+      "signals": [
+        "HEALTHCARE COSTS",
+        "MANAGED CARE",
+        "PRESSURE"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "UnitedHealth faces medical cost inflation and regulatory pressure on Medicare Advantage. Stock declining below key moving averages with sector headwinds.",
+      "catalysts": "Medical cost trends, MA membership, regulatory developments",
+      "risks": "Government price controls, medical inflation, competition",
+      "dayTradeEntry": "$278-$285",
+      "dayTradeTarget": "$290-$295",
+      "dayTradeStop": "$275",
+      "pe": 22,
+      "ptLow": 490,
+      "ptMid": 540,
+      "ptHigh": 590,
+      "earn": "2026-04-15"
+    },
+    "MRK": {
+      "signals": [
+        "KEYTRUDA PATENT",
+        "PIPELINE RISK",
+        "SIDEWAYS"
+      ],
+      "signalClasses": [
+        "sig-neu",
+        "sig-bear"
+      ],
+      "thesis": "Merck faces Keytruda patent cliff concerns while building oncology pipeline. Stock trading sideways around $114 with limited near-term catalysts.",
+      "catalysts": "Pipeline updates, Keytruda combinations, M&A activity",
+      "risks": "Patent expirations, R&D failures, competition",
+      "dayTradeEntry": "$113-$115",
+      "dayTradeTarget": "$117-$120",
+      "dayTradeStop": "$112",
+      "pe": 18,
+      "ptLow": 110,
+      "ptMid": 125,
+      "ptHigh": 145,
+      "earn": "2026-04-30"
+    },
+    "ISRG": {
+      "signals": [
+        "ROBOTIC SURGERY",
+        "PROCEDURE GROWTH",
+        "RECOVERY"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-neu"
+      ],
+      "thesis": "Intuitive Surgical benefits from robotic surgery adoption but faces competition from Medtronic and others. Stock attempting recovery above $475.",
+      "catalysts": "da Vinci installations, procedure volume growth, new applications",
+      "risks": "Competition intensification, hospital budget constraints",
+      "dayTradeEntry": "$475-$480",
+      "dayTradeTarget": "$485-$495",
+      "dayTradeStop": "$470",
+      "pe": 52,
+      "ptLow": 450,
+      "ptMid": 520,
+      "ptHigh": 600,
+      "earn": "2026-04-17"
+    },
+    "JPM": {
+      "signals": [
+        "NET INTEREST MARGIN",
+        "CREDIT QUALITY",
+        "STABILITY"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-neu"
+      ],
+      "thesis": "JPMorgan benefits from higher rates but faces credit normalization concerns. Stock holding $288 level with defensive characteristics in uncertain environment.",
+      "catalysts": "NII trends, credit loss provisions, trading revenues",
+      "risks": "Economic slowdown, credit losses, regulatory changes",
+      "dayTradeEntry": "$285-$290",
+      "dayTradeTarget": "$295-$300",
+      "dayTradeStop": "$282",
+      "pe": 12,
+      "ptLow": 180,
+      "ptMid": 200,
+      "ptHigh": 230,
+      "earn": "2026-04-14"
+    },
+    "HD": {
+      "signals": [
+        "HOUSING SLOWDOWN",
+        "CONSUMER PRESSURE",
+        "DECLINE"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Home Depot faces housing market slowdown and consumer spending weakness. Stock declining below $330 as high rates dampen home improvement spending.",
+      "catalysts": "Spring selling season, mortgage rate changes, consumer data",
+      "risks": "Housing recession, consumer retrenchment, competition",
+      "dayTradeEntry": "$325-$330",
+      "dayTradeTarget": "$335-$340",
+      "dayTradeStop": "$320",
+      "pe": 24,
+      "ptLow": 320,
+      "ptMid": 360,
+      "ptHigh": 400,
+      "earn": "2026-05-21"
+    },
+    "CAVA": {
+      "signals": [
+        "RESTAURANT EXPANSION",
+        "CONSUMER DISCRETIONARY",
+        "PRESSURE"
+      ],
+      "signalClasses": [
+        "sig-neu",
+        "sig-bear"
+      ],
+      "thesis": "Cava faces headwinds from discretionary spending cuts despite strong expansion plans. Stock pulling back from recent highs amid sector rotation.",
+      "catalysts": "Store openings, same-store sales, margin improvements",
+      "risks": "Consumer spending cuts, labor costs, competition",
+      "dayTradeEntry": "$85-$88",
+      "dayTradeTarget": "$92-$95",
+      "dayTradeStop": "$83",
+      "pe": 85,
+      "ptLow": 75,
+      "ptMid": 95,
+      "ptHigh": 120,
+      "earn": "2026-05-14"
+    },
+    "AAPL": {
+      "signals": [
+        "IPHONE DEMAND",
+        "CHINA WEAKNESS",
+        "TECHNICAL BREAKDOWN"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Apple faces iPhone demand concerns and China market weakness. Stock breaking below $250 support with services growth slowing.",
+      "catalysts": "iPhone 16 sales, China recovery, services growth, Vision Pro adoption",
+      "risks": "China geopolitics, hardware cycle, competition",
+      "dayTradeEntry": "$247-$250",
+      "dayTradeTarget": "$252-$257",
+      "dayTradeStop": "$245",
+      "pe": 26,
+      "ptLow": 165,
+      "ptMid": 190,
+      "ptHigh": 220,
+      "earn": "2026-05-01"
+    },
+    "SHOP": {
+      "signals": [
+        "E-COMMERCE PRESSURE",
+        "SMALL BUSINESS STRUGGLES",
+        "DECLINE"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Shopify faces e-commerce normalization and small business spending cuts. Stock declining below $125 as growth momentum fades.",
+      "catalysts": "Merchant additions, take rate improvements, international expansion",
+      "risks": "Economic slowdown, competition from Amazon, merchant churn",
+      "dayTradeEntry": "$120-$124",
+      "dayTradeTarget": "$127-$132",
+      "dayTradeStop": "$118",
+      "pe": 75,
+      "ptLow": 45,
+      "ptMid": 65,
+      "ptHigh": 90,
+      "earn": "2026-05-07"
+    },
+    "RDDT": {
+      "signals": [
+        "SOCIAL MEDIA FATIGUE",
+        "AD MARKET PRESSURE",
+        "SELLOFF"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Reddit faces social media advertising headwinds and user engagement concerns. Stock declining from recent highs amid sector rotation.",
+      "catalysts": "User growth metrics, advertising improvements, AI partnerships",
+      "risks": "Ad market weakness, competition, content moderation issues",
+      "dayTradeEntry": "$135-$140",
+      "dayTradeTarget": "$145-$150",
+      "dayTradeStop": "$132",
+      "pe": null,
+      "ptLow": 35,
+      "ptMid": 50,
+      "ptHigh": 75,
+      "earn": "2026-05-08"
+    },
+    "TWLO": {
+      "signals": [
+        "COMMUNICATION APIs",
+        "ENTERPRISE DEMAND",
+        "RECOVERY"
+      ],
+      "signalClasses": [
+        "sig-bull",
+        "sig-neu"
+      ],
+      "thesis": "Twilio benefits from enterprise communication API demand but faces margin pressure. Stock attempting recovery above $125 with improving fundamentals.",
+      "catalysts": "Customer additions, API usage growth, AI integration",
+      "risks": "Competition, customer concentration, execution challenges",
+      "dayTradeEntry": "$125-$128",
+      "dayTradeTarget": "$130-$135",
+      "dayTradeStop": "$123",
+      "pe": null,
+      "ptLow": 65,
+      "ptMid": 85,
+      "ptHigh": 110,
+      "earn": "2026-05-06"
+    },
+    "HOOD": {
+      "signals": [
+        "TRADING VOLUMES",
+        "CRYPTO CORRELATION",
+        "PRESSURE"
+      ],
+      "signalClasses": [
+        "sig-bear",
+        "sig-neu"
+      ],
+      "thesis": "Robinhood faces headwinds from declining crypto volumes and reduced retail trading activity. Stock under pressure below $75 support.",
+      "catalysts": "Trading volume recovery, crypto adoption, product launches",
+      "risks": "Crypto volatility, regulation, competition from traditional brokers",
+      "dayTradeEntry": "$72-$75",
+      "dayTradeTarget": "$78-$82",
+      "dayTradeStop": "$70",
+      "pe": 22,
+      "ptLow": 12,
+      "ptMid": 18,
+      "ptHigh": 28,
+      "earn": "2026-05-09"
+    },
+    "QUBT": {
+      "signals": [
+        "QUANTUM COMPUTING",
+        "SPECULATIVE PREMIUM",
+        "VOLATILE"
+      ],
+      "signalClasses": [
+        "sig-hot",
+        "sig-bear"
+      ],
+      "thesis": "Quantum Computing Inc remains highly speculative with limited commercial applications. Stock volatile around $7 level with high risk/reward profile.",
+      "catalysts": "Technology breakthroughs, partnership announcements, government contracts",
+      "risks": "Technology uncertainty, funding needs, competition from tech giants",
+      "dayTradeEntry": "$6.90-$7.30",
+      "dayTradeTarget": "$7.60-$8.00",
+      "dayTradeStop": "$6.50",
+      "pe": null,
+      "ptLow": 5,
+      "ptMid": 12,
+      "ptHigh": 25,
+      "earn": "2026-05-17"
+    }
+  },
+  "options_strategies": [
+    {
+      "symbol": "PLTR",
+      "strategy": "BULL CALL SPREAD",
+      "rationale": "Defense AI momentum with limited downside risk",
+      "legs": [
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 155,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 165,
+          "expiry": "2026-04-18"
+        }
+      ],
+      "maxProfit": "$800",
+      "maxLoss": "$200",
+      "breakeven": "$157"
+    },
+    {
+      "symbol": "MU",
+      "strategy": "IRON CONDOR",
+      "rationale": "High volatility post-earnings with range-bound expectations",
+      "legs": [
+        {
+          "action": "SELL",
+          "type": "PUT",
+          "strike": 420,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "BUY",
+          "type": "PUT",
+          "strike": 400,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 480,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 500,
+          "expiry": "2026-04-18"
+        }
+      ],
+      "maxProfit": "$1,200",
+      "maxLoss": "$800",
+      "breakeven": "$432-$468"
+    },
+    {
+      "symbol": "TSLA",
+      "strategy": "BEAR PUT SPREAD",
+      "rationale": "EV demand concerns and technical breakdown",
+      "legs": [
+        {
+          "action": "BUY",
+          "type": "PUT",
+          "strike": 380,
+          "expiry": "2026-05-16"
+        },
+        {
+          "action": "SELL",
+          "type": "PUT",
+          "strike": 360,
+          "expiry": "2026-05-16"
+        }
+      ],
+      "maxProfit": "$1,800",
+      "maxLoss": "$200",
+      "breakeven": "$378"
+    },
+    {
+      "symbol": "NVDA",
+      "strategy": "CASH-SECURED PUT",
+      "rationale": "Collect premium on consolidation near support",
+      "legs": [
+        {
+          "action": "SELL",
+          "type": "PUT",
+          "strike": 175,
+          "expiry": "2026-04-18"
+        }
+      ],
+      "maxProfit": "$800",
+      "maxLoss": "$16,700",
+      "breakeven": "$167"
+    },
+    {
+      "symbol": "COHR",
+      "strategy": "BULL CALL SPREAD",
+      "rationale": "Momentum breakout in laser technology demand",
+      "legs": [
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 275,
+          "expiry": "2026-05-16"
+        },
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 300,
+          "expiry": "2026-05-16"
+        }
+      ],
+      "maxProfit": "$2,300",
+      "maxLoss": "$200",
+      "breakeven": "$277"
+    },
+    {
+      "symbol": "META",
+      "strategy": "BEAR PUT SPREAD",
+      "rationale": "AI capex concerns and technical breakdown",
+      "legs": [
+        {
+          "action": "BUY",
+          "type": "PUT",
+          "strike": 605,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "SELL",
+          "type": "PUT",
+          "strike": 580,
+          "expiry": "2026-04-18"
+        }
+      ],
+      "maxProfit": "$2,300",
+      "maxLoss": "$200",
+      "breakeven": "$603"
+    },
+    {
+      "symbol": "AMD",
+      "strategy": "BULL CALL SPREAD",
+      "rationale": "Data center GPU market share gains vs Nvidia",
+      "legs": [
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 205,
+          "expiry": "2026-05-16"
+        },
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 220,
+          "expiry": "2026-05-16"
+        }
+      ],
+      "maxProfit": "$1,300",
+      "maxLoss": "$200",
+      "breakeven": "$207"
+    },
+    {
+      "symbol": "JPM",
+      "strategy": "COVERED CALL",
+      "rationale": "Generate income on stable banking stock",
+      "legs": [
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 295,
+          "expiry": "2026-04-18"
+        }
+      ],
+      "maxProfit": "$900",
+      "maxLoss": "Unlimited",
+      "breakeven": "$279"
+    },
+    {
+      "symbol": "PANW",
+      "strategy": "BULL CALL SPREAD",
+      "rationale": "Cybersecurity demand from Iran conflict escalation",
+      "legs": [
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 170,
+          "expiry": "2026-05-16"
+        },
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 185,
+          "expiry": "2026-05-16"
+        }
+      ],
+      "maxProfit": "$1,300",
+      "maxLoss": "$200",
+      "breakeven": "$172"
+    },
+    {
+      "symbol": "AAPL",
+      "strategy": "IRON CONDOR",
+      "rationale": "Range-bound trading with elevated volatility",
+      "legs": [
+        {
+          "action": "SELL",
+          "type": "PUT",
+          "strike": 240,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "BUY",
+          "type": "PUT",
+          "strike": 230,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 260,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 270,
+          "expiry": "2026-04-18"
+        }
+      ],
+      "maxProfit": "$600",
+      "maxLoss": "$400",
+      "breakeven": "$246-$254"
+    },
+    {
+      "symbol": "SNDK",
+      "strategy": "BULL CALL SPREAD",
+      "rationale": "AI storage demand driving memory momentum",
+      "legs": [
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 770,
+          "expiry": "2026-05-16"
+        },
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 800,
+          "expiry": "2026-05-16"
+        }
+      ],
+      "maxProfit": "$2,800",
+      "maxLoss": "$200",
+      "breakeven": "$772"
+    },
+    {
+      "symbol": "LLY",
+      "strategy": "IRON BUTTERFLY",
+      "rationale": "Consolidation around $917 with limited catalysts",
+      "legs": [
+        {
+          "action": "SELL",
+          "type": "CALL",
+          "strike": 917,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "SELL",
+          "type": "PUT",
+          "strike": 917,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "BUY",
+          "type": "CALL",
+          "strike": 940,
+          "expiry": "2026-04-18"
+        },
+        {
+          "action": "BUY",
+          "type": "PUT",
+          "strike": 895,
+          "expiry": "2026-04-18"
+        }
+      ],
+      "maxProfit": "$1,800",
+      "maxLoss": "$400",
+      "breakeven": "$899-$935"
+    }
+  ],
+  "day_trades": [
+    {
+      "symbol": "PLTR",
+      "bias": "BULLISH",
+      "entry": "$153-$155",
+      "target": "$158-$162",
+      "stop": "$151",
+      "note": "Defense AI momentum on Pentagon spending news"
+    },
+    {
+      "symbol": "MU",
+      "bias": "BEARISH",
+      "entry": "$445-$450",
+      "target": "$430-$440",
+      "stop": "$455",
+      "note": "Post-earnings selloff continuation on margin concerns"
+    },
+    {
+      "symbol": "COHR",
+      "bias": "BULLISH",
+      "entry": "$270-$275",
+      "target": "$280-$290",
+      "stop": "$265",
+      "note": "Laser tech breakout momentum on AI hardware demand"
+    },
+    {
+      "symbol": "TSLA",
+      "bias": "BEARISH",
+      "entry": "$378-$382",
+      "target": "$365-$375",
+      "stop": "$388",
+      "note": "Technical breakdown below $380 support level"
+    },
+    {
+      "symbol": "AMD",
+      "bias": "BULLISH",
+      "entry": "$200-$205",
+      "target": "$208-$215",
+      "stop": "$195",
+      "note": "Breakout above $200 resistance on data center wins"
+    },
+    {
+      "symbol": "NVDA",
+      "bias": "NEUTRAL",
+      "entry": "$176-$179",
+      "target": "$182-$186",
+      "stop": "$174",
+      "note": "Range-bound consolidation post-GTC event"
+    },
+    {
+      "symbol": "META",
+      "bias": "BEARISH",
+      "entry": "$605-$610",
+      "target": "$595-$600",
+      "stop": "$615",
+      "note": "AI capex concerns driving institutional selling"
+    },
+    {
+      "symbol": "PANW",
+      "bias": "BULLISH",
+      "entry": "$168-$170",
+      "target": "$172-$175",
+      "stop": "$166",
+      "note": "Cybersecurity demand from geopolitical tensions"
+    },
+    {
+      "symbol": "SNDK",
+      "bias": "BULLISH",
+      "entry": "$760-$775",
+      "target": "$785-$800",
+      "stop": "$745",
+      "note": "AI storage demand driving memory sector momentum"
+    },
+    {
+      "symbol": "CRCL",
+      "bias": "BEARISH",
+      "entry": "$125-$130",
+      "target": "$115-$125",
+      "stop": "$135",
+      "note": "Crypto selloff pressuring stablecoin issuers"
+    },
+    {
+      "symbol": "VRT",
+      "bias": "BULLISH",
+      "entry": "$265-$270",
+      "target": "$275-$285",
+      "stop": "$260",
+      "note": "Data center infrastructure demand uptrend"
+    },
+    {
+      "symbol": "AAPL",
+      "bias": "BEARISH",
+      "entry": "$248-$251",
+      "target": "$240-$247",
+      "stop": "$254",
+      "note": "Breaking below $249 support on China concerns"
+    }
+  ],
+  "unusual_flow": [
+    {
+      "symbol": "PLTR",
+      "volOI": "4.2x",
+      "callPct": 78,
+      "putPct": 22,
+      "type": "CALL SWEEP",
+      "premium": "$2.1M",
+      "contract": "$160C APR",
+      "interpretation": "Institutional accumulation on defense AI thesis"
+    },
+    {
+      "symbol": "MU",
+      "volOI": "6.8x",
+      "callPct": 35,
+      "putPct": 65,
+      "type": "PUT BLOCK",
+      "premium": "$4.5M",
+      "contract": "$420P MAY",
+      "interpretation": "Large hedge against further memory selloff"
+    },
+    {
+      "symbol": "TSLA",
+      "volOI": "3.9x",
+      "callPct": 25,
+      "putPct": 75,
+      "type": "PUT SWEEP",
+      "premium": "$3.2M",
+      "contract": "$370P APR",
+      "interpretation": "Bearish positioning on EV demand concerns"
+    },
+    {
+      "symbol": "NVDA",
+      "volOI": "2.1x",
+      "callPct": 55,
+      "putPct": 45,
+      "type": "STRADDLE",
+      "premium": "$6.8M",
+      "contract": "$180 STRADDLE APR",
+      "interpretation": "Volatility play around earnings/guidance"
+    },
+    {
+      "symbol": "COHR",
+      "volOI": "8.2x",
+      "callPct": 82,
+      "putPct": 18,
+      "type": "CALL BLOCK",
+      "premium": "$1.8M",
+      "contract": "$280C MAY",
+      "interpretation": "Momentum chase on laser technology breakout"
+    },
+    {
+      "symbol": "META",
+      "volOI": "3.4x",
+      "callPct": 30,
+      "putPct": 70,
+      "type": "PUT SWEEP",
+      "premium": "$5.1M",
+      "contract": "$590P APR",
+      "interpretation": "AI investment skepticism driving downside bets"
+    },
+    {
+      "symbol": "AMD",
+      "volOI": "4.7x",
+      "callPct": 72,
+      "putPct": 28,
+      "type": "CALL SWEEP",
+      "premium": "$2.8M",
+      "contract": "$210C MAY",
+      "interpretation": "Data center GPU market share optimism"
+    },
+    {
+      "symbol": "PANW",
+      "volOI": "5.1x",
+      "callPct": 68,
+      "putPct": 32,
+      "type": "CALL BLOCK",
+      "premium": "$1.9M",
+      "contract": "$175C MAY",
+      "interpretation": "Cybersecurity demand from geopolitical events"
+    },
+    {
+      "symbol": "SNDK",
+      "volOI": "7.3x",
+      "callPct": 85,
+      "putPct": 15,
+      "type": "CALL SWEEP",
+      "premium": "$3.1M",
+      "contract": "$800C JUN",
+      "interpretation": "AI storage theme driving aggressive upside bets"
+    },
+    {
+      "symbol": "CRCL",
+      "volOI": "9.1x",
+      "callPct": 20,
+      "putPct": 80,
+      "type": "PUT BLOCK",
+      "premium": "$2.2M",
+      "contract": "$110P MAY",
+      "interpretation": "Crypto correlation fears pressuring stablecoin plays"
+    }
+  ],
+  "top_opportunity": {
+    "symbol": "COHR",
+    "reason": "Laser technology breakout on AI hardware manufacturing demand surge"
+  },
+  "top_avoid": {
+    "symbol": "TSLA",
+    "reason": "Technical breakdown below $380 with EV demand headwinds mounting"
+  },
+  "stock_analysis": {
+    "PLTR": {
+      "trend": "UPTREND",
+      "primary_pattern": "Bull Flag",
+      "pattern_narrative": "Strong uptrend above both 20-SMA ($146.85) and 50-SMA ($152.19) with flag consolidation around $155. Recent volume surge confirms institutional accumulation.",
+      "secondary_patterns": [
+        "Ascending Triangle",
+        "Higher Lows"
+      ],
+      "volume_ratio": 1.4,
+      "resistance": [
+        "$158.00",
+        "$162.00"
+      ],
+      "support": [
+        "$152.00",
+        "$147.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $158 on volume",
+        "targets": [
+          "$165",
+          "$175"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $150 support",
+        "targets": [
+          "$145",
+          "$140"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$150.00",
+      "key_risk": "Government spending cuts or budget constraints",
+      "confidence": "HIGH",
+      "rsi": 57,
+      "short_interest": 3.2,
+      "fifty_two_week_low": 14.5,
+      "fifty_two_week_high": 165.89
+    },
+    "KTOS": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Falling Wedge",
+      "pattern_narrative": "Consolidating between $87-95 range below 50-SMA ($99.58) but finding support at 20-SMA ($90.35). Falling wedge suggests potential upside breakout.",
+      "secondary_patterns": [
+        "Rectangle",
+        "Support Test"
+      ],
+      "volume_ratio": 0.8,
+      "resistance": [
+        "$95.00",
+        "$100.00"
+      ],
+      "support": [
+        "$87.00",
+        "$83.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $95 resistance",
+        "targets": [
+          "$105",
+          "$115"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $87 support",
+        "targets": [
+          "$80",
+          "$75"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "WATCH",
+      "stop_loss": "$86.00",
+      "key_risk": "Defense budget allocation delays",
+      "confidence": "MEDIUM",
+      "rsi": 51,
+      "short_interest": 8.1,
+      "fifty_two_week_low": 65.25,
+      "fifty_two_week_high": 112.45
+    },
+    "PANW": {
+      "trend": "UPTREND",
+      "primary_pattern": "Ascending Channel",
+      "pattern_narrative": "Trading above 20-SMA ($158.84) and near 50-SMA ($168.91) in ascending channel. Recent breakout above $168 suggests continuation.",
+      "secondary_patterns": [
+        "Bull Flag",
+        "Higher Highs"
+      ],
+      "volume_ratio": 1.3,
+      "resistance": [
+        "$172.00",
+        "$178.00"
+      ],
+      "support": [
+        "$168.00",
+        "$163.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $172 on volume",
+        "targets": [
+          "$180",
+          "$190"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $163 support",
+        "targets": [
+          "$155",
+          "$150"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$165.00",
+      "key_risk": "Enterprise cybersecurity budget cuts",
+      "confidence": "HIGH",
+      "rsi": 59,
+      "short_interest": 2.8,
+      "fifty_two_week_low": 95.5,
+      "fifty_two_week_high": 195.75
+    },
+    "SERV": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Triangle",
+      "pattern_narrative": "Trading below both 20-SMA ($9.72) and 50-SMA ($11.04) in clear downtrend. Recent break below $9.50 confirms bearish momentum.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Support Break"
+      ],
+      "volume_ratio": 1.6,
+      "resistance": [
+        "$9.80",
+        "$10.50"
+      ],
+      "support": [
+        "$8.80",
+        "$8.20"
+      ],
+      "bullish_case": {
+        "trigger": "Reclaim above $10.00",
+        "targets": [
+          "$11.50",
+          "$13.00"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $8.80",
+        "targets": [
+          "$7.50",
+          "$6.50"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$8.50",
+      "key_risk": "Funding challenges and competitive pressure",
+      "confidence": "HIGH",
+      "rsi": 43,
+      "short_interest": 15.3,
+      "fifty_two_week_low": 6.85,
+      "fifty_two_week_high": 18.9
+    },
+    "NVDA": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Symmetrical Triangle",
+      "pattern_narrative": "Consolidating around both SMAs with 20-SMA ($183.96) above 50-SMA ($184.91). Triangle pattern suggesting resolution needed.",
+      "secondary_patterns": [
+        "Pennant",
+        "Coiling"
+      ],
+      "volume_ratio": 1.4,
+      "resistance": [
+        "$182.00",
+        "$188.00"
+      ],
+      "support": [
+        "$175.00",
+        "$170.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $182 on volume",
+        "targets": [
+          "$195",
+          "$210"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $175",
+        "targets": [
+          "$165",
+          "$155"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "HOLD",
+      "stop_loss": "$173.00",
+      "key_risk": "AI investment scrutiny and competition",
+      "confidence": "MEDIUM",
+      "rsi": 44,
+      "short_interest": 1.2,
+      "fifty_two_week_low": 108.5,
+      "fifty_two_week_high": 240.8
+    },
+    "MSFT": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Bear Flag",
+      "pattern_narrative": "Below both 20-SMA ($399.52) and 50-SMA ($422.77) in clear downtrend. Recent flag formation suggests further decline likely.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Descending Channel"
+      ],
+      "volume_ratio": 1.5,
+      "resistance": [
+        "$395.00",
+        "$405.00"
+      ],
+      "support": [
+        "$385.00",
+        "$375.00"
+      ],
+      "bullish_case": {
+        "trigger": "Reclaim above $400",
+        "targets": [
+          "$415",
+          "$430"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $385",
+        "targets": [
+          "$370",
+          "$355"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$382.00",
+      "key_risk": "AI investment returns below expectations",
+      "confidence": "HIGH",
+      "rsi": 36,
+      "short_interest": 0.8,
+      "fifty_two_week_low": 309.45,
+      "fifty_two_week_high": 468.35
+    },
+    "GOOGL": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Rectangle",
+      "pattern_narrative": "Trading near 20-SMA ($307.05) but below 50-SMA ($318.41) in rectangular consolidation. Neutral momentum with slight bearish bias.",
+      "secondary_patterns": [
+        "Sideways Channel",
+        "Consolidation"
+      ],
+      "volume_ratio": 1.8,
+      "resistance": [
+        "$312.00",
+        "$320.00"
+      ],
+      "support": [
+        "$302.00",
+        "$295.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $312 on volume",
+        "targets": [
+          "$325",
+          "$340"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $302",
+        "targets": [
+          "$290",
+          "$280"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "WATCH",
+      "stop_loss": "$300.00",
+      "key_risk": "AI competition from OpenAI and others",
+      "confidence": "MEDIUM",
+      "rsi": 47,
+      "short_interest": 1.4,
+      "fifty_two_week_low": 83.34,
+      "fifty_two_week_high": 191.75
+    },
+    "META": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Head and Shoulders",
+      "pattern_narrative": "Below both SMAs with 20-SMA ($642.65) below 50-SMA ($651.08). H&S pattern complete with neckline break confirmed.",
+      "secondary_patterns": [
+        "Bear Flag",
+        "Lower Highs"
+      ],
+      "volume_ratio": 0.7,
+      "resistance": [
+        "$615.00",
+        "$630.00"
+      ],
+      "support": [
+        "$600.00",
+        "$580.00"
+      ],
+      "bullish_case": {
+        "trigger": "Reclaim above $620",
+        "targets": [
+          "$640",
+          "$660"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $600",
+        "targets": [
+          "$570",
+          "$540"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "SELL",
+      "stop_loss": "$620.00",
+      "key_risk": "Reality Labs losses exceeding investor tolerance",
+      "confidence": "HIGH",
+      "rsi": 36,
+      "short_interest": 1.8,
+      "fifty_two_week_low": 88.09,
+      "fifty_two_week_high": 542.81
+    },
+    "AMZN": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Channel",
+      "pattern_narrative": "Trading below both 20-SMA ($211.09) and 50-SMA ($221.58) in descending channel. Recent support test at $206 level.",
+      "secondary_patterns": [
+        "Support Test",
+        "Lower Highs"
+      ],
+      "volume_ratio": 1,
+      "resistance": [
+        "$212.00",
+        "$218.00"
+      ],
+      "support": [
+        "$206.00",
+        "$200.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $215",
+        "targets": [
+          "$225",
+          "$235"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $205",
+        "targets": [
+          "$195",
+          "$185"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$203.00",
+      "key_risk": "AWS growth deceleration and retail headwinds",
+      "confidence": "HIGH",
+      "rsi": 44,
+      "short_interest": 1.1,
+      "fifty_two_week_low": 118.35,
+      "fifty_two_week_high": 201.2
+    },
+    "AVGO": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Double Bottom",
+      "pattern_narrative": "Testing support near 20-SMA ($327.25) with double bottom formation around $315. Recovery attempt from recent lows.",
+      "secondary_patterns": [
+        "Support Bounce",
+        "Reversal Pattern"
+      ],
+      "volume_ratio": 0.8,
+      "resistance": [
+        "$325.00",
+        "$335.00"
+      ],
+      "support": [
+        "$315.00",
+        "$305.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $325 on volume",
+        "targets": [
+          "$340",
+          "$355"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $310",
+        "targets": [
+          "$295",
+          "$280"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "WATCH",
+      "stop_loss": "$312.00",
+      "key_risk": "Apple dependency and semiconductor cycle",
+      "confidence": "MEDIUM",
+      "rsi": 44,
+      "short_interest": 1.6,
+      "fifty_two_week_low": 203.55,
+      "fifty_two_week_high": 1884
+    },
+    "MU": {
+      "trend": "UPTREND",
+      "primary_pattern": "Shooting Star",
+      "pattern_narrative": "Strong uptrend above 20-SMA ($416.85) and 50-SMA ($398.91) but showing shooting star reversal pattern after earnings miss reception.",
+      "secondary_patterns": [
+        "Reversal Candle",
+        "Momentum Divergence"
+      ],
+      "volume_ratio": 1.9,
+      "resistance": [
+        "$460.00",
+        "$480.00"
+      ],
+      "support": [
+        "$420.00",
+        "$400.00"
+      ],
+      "bullish_case": {
+        "trigger": "Hold above $430",
+        "targets": [
+          "$480",
+          "$520"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $420",
+        "targets": [
+          "$390",
+          "$360"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "HOLD",
+      "stop_loss": "$415.00",
+      "key_risk": "Memory cycle peak concerns",
+      "confidence": "MEDIUM",
+      "rsi": 59,
+      "short_interest": 2.8,
+      "fifty_two_week_low": 67.8,
+      "fifty_two_week_high": 471.26
+    },
+    "AMD": {
+      "trend": "UPTREND",
+      "primary_pattern": "Cup and Handle",
+      "pattern_narrative": "Breaking above 20-SMA ($200.44) but below 50-SMA ($214.61). Cup and handle pattern completion with breakout above $200.",
+      "secondary_patterns": [
+        "Breakout",
+        "Higher Lows"
+      ],
+      "volume_ratio": 1.2,
+      "resistance": [
+        "$208.00",
+        "$218.00"
+      ],
+      "support": [
+        "$198.00",
+        "$192.00"
+      ],
+      "bullish_case": {
+        "trigger": "Hold above $205",
+        "targets": [
+          "$220",
+          "$240"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $195",
+        "targets": [
+          "$185",
+          "$175"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$195.00",
+      "key_risk": "Nvidia competitive response",
+      "confidence": "HIGH",
+      "rsi": 51,
+      "short_interest": 4.2,
+      "fifty_two_week_low": 93.12,
+      "fifty_two_week_high": 227.3
+    },
+    "CRWV": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Bear Flag",
+      "pattern_narrative": "Below both 20-SMA ($82.87) and 50-SMA ($88.48) in downtrend. Bear flag formation suggests further weakness ahead.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Rejection"
+      ],
+      "volume_ratio": 1.5,
+      "resistance": [
+        "$85.00",
+        "$90.00"
+      ],
+      "support": [
+        "$78.00",
+        "$72.00"
+      ],
+      "bullish_case": {
+        "trigger": "Reclaim above $85",
+        "targets": [
+          "$92",
+          "$100"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $78",
+        "targets": [
+          "$70",
+          "$62"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$75.00",
+      "key_risk": "AI infrastructure valuation bubble",
+      "confidence": "HIGH",
+      "rsi": 46,
+      "short_interest": 12.5,
+      "fifty_two_week_low": 58.9,
+      "fifty_two_week_high": 118.75
+    },
+    "COHR": {
+      "trend": "UPTREND",
+      "primary_pattern": "Breakout",
+      "pattern_narrative": "Strong breakout above 20-SMA ($257.30) and 50-SMA ($227.87) with volume surge. Breakout from $260 resistance level confirmed.",
+      "secondary_patterns": [
+        "Momentum Surge",
+        "Volume Breakout"
+      ],
+      "volume_ratio": 1,
+      "resistance": [
+        "$280.00",
+        "$300.00"
+      ],
+      "support": [
+        "$260.00",
+        "$245.00"
+      ],
+      "bullish_case": {
+        "trigger": "Hold above $270",
+        "targets": [
+          "$300",
+          "$330"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $260",
+        "targets": [
+          "$240",
+          "$220"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$255.00",
+      "key_risk": "Semiconductor equipment cycle downturn",
+      "confidence": "HIGH",
+      "rsi": 60,
+      "short_interest": 6.8,
+      "fifty_two_week_low": 165.4,
+      "fifty_two_week_high": 283.75
+    },
+    "APLD": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Triangle",
+      "pattern_narrative": "Below both 20-SMA ($27.83) and 50-SMA ($32.38) in descending triangle. Recent test of $25 support level shows weakness.",
+      "secondary_patterns": [
+        "Support Test",
+        "Consolidation"
+      ],
+      "volume_ratio": 1.3,
+      "resistance": [
+        "$28.00",
+        "$30.00"
+      ],
+      "support": [
+        "$25.00",
+        "$22.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $28.50",
+        "targets": [
+          "$32",
+          "$36"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $25",
+        "targets": [
+          "$20",
+          "$18"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$24.00",
+      "key_risk": "Data center capacity competition",
+      "confidence": "MEDIUM",
+      "rsi": 43,
+      "short_interest": 18.2,
+      "fifty_two_week_low": 19.8,
+      "fifty_two_week_high": 48.9
+    },
+    "VRT": {
+      "trend": "UPTREND",
+      "primary_pattern": "Bull Flag",
+      "pattern_narrative": "Strong uptrend above both 20-SMA ($257.88) and 50-SMA ($219.40). Bull flag consolidation around $265-270 level.",
+      "secondary_patterns": [
+        "Ascending Triangle",
+        "Higher Lows"
+      ],
+      "volume_ratio": 1.4,
+      "resistance": [
+        "$275.00",
+        "$285.00"
+      ],
+      "support": [
+        "$260.00",
+        "$250.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $275",
+        "targets": [
+          "$290",
+          "$310"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $255",
+        "targets": [
+          "$235",
+          "$220"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$255.00",
+      "key_risk": "Data center capex slowdown",
+      "confidence": "HIGH",
+      "rsi": 64,
+      "short_interest": 3.1,
+      "fifty_two_week_low": 89.9,
+      "fifty_two_week_high": 274.02
+    },
+    "ANET": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Rectangle",
+      "pattern_narrative": "Trading near both 20-SMA ($133.50) and 50-SMA ($134.83) in tight rectangle pattern. Consolidation suggests breakout pending.",
+      "secondary_patterns": [
+        "Consolidation",
+        "Coiling"
+      ],
+      "volume_ratio": 0.8,
+      "resistance": [
+        "$137.00",
+        "$142.00"
+      ],
+      "support": [
+        "$132.00",
+        "$128.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $137 on volume",
+        "targets": [
+          "$145",
+          "$155"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $130",
+        "targets": [
+          "$125",
+          "$120"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "WATCH",
+      "stop_loss": "$130.00",
+      "key_risk": "Cloud capex spending delays",
+      "confidence": "MEDIUM",
+      "rsi": 51,
+      "short_interest": 4.5,
+      "fifty_two_week_low": 89.25,
+      "fifty_two_week_high": 137.56
+    },
+    "NOW": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Channel",
+      "pattern_narrative": "Below both 20-SMA ($112.48) and 50-SMA ($117.81) in descending channel. Recent rejection at $117 resistance confirms downtrend.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Resistance Rejection"
+      ],
+      "volume_ratio": 1.1,
+      "resistance": [
+        "$117.00",
+        "$122.00"
+      ],
+      "support": [
+        "$111.00",
+        "$107.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $118",
+        "targets": [
+          "$125",
+          "$132"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $110",
+        "targets": [
+          "$105",
+          "$98"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$109.00",
+      "key_risk": "Enterprise software spending cuts",
+      "confidence": "HIGH",
+      "rsi": 47,
+      "short_interest": 2.9,
+      "fifty_two_week_low": 362,
+      "fifty_two_week_high": 920
+    },
+    "APP": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Falling Knife",
+      "pattern_narrative": "Below both 20-SMA ($450.94) and 50-SMA ($486.04) with accelerating decline. Falling knife pattern suggests further weakness.",
+      "secondary_patterns": [
+        "Breakdown",
+        "Momentum Decline"
+      ],
+      "volume_ratio": 1.3,
+      "resistance": [
+        "$450.00",
+        "$465.00"
+      ],
+      "support": [
+        "$415.00",
+        "$395.00"
+      ],
+      "bullish_case": {
+        "trigger": "Stabilize above $440",
+        "targets": [
+          "$460",
+          "$480"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $415",
+        "targets": [
+          "$385",
+          "$350"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$410.00",
+      "key_risk": "Mobile advertising market deterioration",
+      "confidence": "HIGH",
+      "rsi": 45,
+      "short_interest": 7.3,
+      "fifty_two_week_low": 278.5,
+      "fifty_two_week_high": 471.27
+    },
+    "TER": {
+      "trend": "UPTREND",
+      "primary_pattern": "Ascending Triangle",
+      "pattern_narrative": "Above 20-SMA ($307.76) and well above 50-SMA ($279.03) in ascending triangle pattern. Testing $304 resistance level.",
+      "secondary_patterns": [
+        "Higher Lows",
+        "Breakout Attempt"
+      ],
+      "volume_ratio": 1.2,
+      "resistance": [
+        "$304.00",
+        "$315.00"
+      ],
+      "support": [
+        "$295.00",
+        "$285.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $305",
+        "targets": [
+          "$320",
+          "$340"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $290",
+        "targets": [
+          "$275",
+          "$260"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$292.00",
+      "key_risk": "Semiconductor testing demand volatility",
+      "confidence": "HIGH",
+      "rsi": 53,
+      "short_interest": 5.8,
+      "fifty_two_week_low": 89.25,
+      "fifty_two_week_high": 307.58
+    },
+    "SNDK": {
+      "trend": "UPTREND",
+      "primary_pattern": "Momentum Surge",
+      "pattern_narrative": "Strong uptrend well above both 20-SMA ($642.27) and 50-SMA ($566.86). Momentum surge pattern with volume confirmation.",
+      "secondary_patterns": [
+        "Breakout",
+        "Higher Highs"
+      ],
+      "volume_ratio": 1,
+      "resistance": [
+        "$780.00",
+        "$800.00"
+      ],
+      "support": [
+        "$750.00",
+        "$720.00"
+      ],
+      "bullish_case": {
+        "trigger": "Hold above $760",
+        "targets": [
+          "$820",
+          "$880"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $740",
+        "targets": [
+          "$700",
+          "$660"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$740.00",
+      "key_risk": "Memory cycle peak concerns",
+      "confidence": "HIGH",
+      "rsi": 68,
+      "short_interest": 2.1,
+      "fifty_two_week_low": 398.5,
+      "fifty_two_week_high": 775.65
+    },
+    "CRCL": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Head and Shoulders",
+      "pattern_narrative": "Strong move above both SMAs with 20-SMA ($102.00) well above 50-SMA ($81.67) but forming H&S top pattern around $135 highs.",
+      "secondary_patterns": [
+        "Topping Pattern",
+        "Momentum Divergence"
+      ],
+      "volume_ratio": 1.3,
+      "resistance": [
+        "$135.00",
+        "$145.00"
+      ],
+      "support": [
+        "$120.00",
+        "$110.00"
+      ],
+      "bullish_case": {
+        "trigger": "Reclaim above $135",
+        "targets": [
+          "$150",
+          "$170"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $120",
+        "targets": [
+          "$100",
+          "$85"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "SELL",
+      "stop_loss": "$140.00",
+      "key_risk": "Crypto market correlation and regulation",
+      "confidence": "HIGH",
+      "rsi": 74,
+      "short_interest": 22.8,
+      "fifty_two_week_low": 38.9,
+      "fifty_two_week_high": 136.61
+    },
+    "TSLA": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Breakdown",
+      "pattern_narrative": "Below both 20-SMA ($400.66) and 50-SMA ($416.52) with breakdown below $380 support. Accelerating decline pattern.",
+      "secondary_patterns": [
+        "Support Break",
+        "Lower Highs"
+      ],
+      "volume_ratio": 1.9,
+      "resistance": [
+        "$390.00",
+        "$400.00"
+      ],
+      "support": [
+        "$375.00",
+        "$360.00"
+      ],
+      "bullish_case": {
+        "trigger": "Reclaim above $395",
+        "targets": [
+          "$410",
+          "$425"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $375",
+        "targets": [
+          "$350",
+          "$325"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "SELL",
+      "stop_loss": "$395.00",
+      "key_risk": "EV demand collapse and China weakness",
+      "confidence": "HIGH",
+      "rsi": 36,
+      "short_interest": 3.8,
+      "fifty_two_week_low": 138.8,
+      "fifty_two_week_high": 488.54
+    },
+    "SMR": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Consolidation",
+      "pattern_narrative": "Below both 20-SMA ($12.47) and 50-SMA ($15.70) but forming base around $12 level. Consolidation pattern with downtrend bias.",
+      "secondary_patterns": [
+        "Base Building",
+        "Support Test"
+      ],
+      "volume_ratio": 1.4,
+      "resistance": [
+        "$12.70",
+        "$13.50"
+      ],
+      "support": [
+        "$11.40",
+        "$10.80"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $13.00",
+        "targets": [
+          "$15",
+          "$18"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $11.20",
+        "targets": [
+          "$9.50",
+          "$8.00"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "WATCH",
+      "stop_loss": "$11.00",
+      "key_risk": "Nuclear deployment execution delays",
+      "confidence": "MEDIUM",
+      "rsi": 40,
+      "short_interest": 12.1,
+      "fifty_two_week_low": 8.45,
+      "fifty_two_week_high": 25.8
+    },
+    "LLY": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Channel",
+      "pattern_narrative": "Below both 20-SMA ($997.00) and 50-SMA ($1028.68) in descending channel. Recent decline from $980+ highs continues.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Channel"
+      ],
+      "volume_ratio": 0.8,
+      "resistance": [
+        "$930.00",
+        "$950.00"
+      ],
+      "support": [
+        "$905.00",
+        "$880.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $940",
+        "targets": [
+          "$970",
+          "$1000"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $900",
+        "targets": [
+          "$860",
+          "$820"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$895.00",
+      "key_risk": "GLP-1 competition intensification",
+      "confidence": "MEDIUM",
+      "rsi": 32,
+      "short_interest": 0.9,
+      "fifty_two_week_low": 487.6,
+      "fifty_two_week_high": 1024.3
+    },
+    "NVO": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Bear Flag",
+      "pattern_narrative": "Below both 20-SMA ($38.72) and 50-SMA ($48.71) in clear downtrend. Bear flag formation around $37 level suggests continuation.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Rejection"
+      ],
+      "volume_ratio": 1.6,
+      "resistance": [
+        "$38.50",
+        "$40.00"
+      ],
+      "support": [
+        "$36.00",
+        "$34.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $39.50",
+        "targets": [
+          "$42",
+          "$45"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $36",
+        "targets": [
+          "$32",
+          "$28"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$35.00",
+      "key_risk": "Obesity drug competition from Lilly",
+      "confidence": "HIGH",
+      "rsi": 32,
+      "short_interest": 1.2,
+      "fifty_two_week_low": 88.5,
+      "fifty_two_week_high": 139
+    },
+    "UNH": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Channel",
+      "pattern_narrative": "Below both 20-SMA ($285.55) and 50-SMA ($299.83) in descending channel. Recent rejection at $287 confirms downtrend.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Channel"
+      ],
+      "volume_ratio": 1.9,
+      "resistance": [
+        "$288.00",
+        "$295.00"
+      ],
+      "support": [
+        "$275.00",
+        "$265.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $290",
+        "targets": [
+          "$305",
+          "$320"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $275",
+        "targets": [
+          "$260",
+          "$245"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$270.00",
+      "key_risk": "Healthcare cost inflation exceeding premiums",
+      "confidence": "HIGH",
+      "rsi": 43,
+      "short_interest": 0.7,
+      "fifty_two_week_low": 441.4,
+      "fifty_two_week_high": 630.8
+    },
+    "MRK": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Rectangle",
+      "pattern_narrative": "Near 20-SMA ($118.53) but below 50-SMA ($115.54) in rectangular consolidation. Neutral momentum around $114-116 range.",
+      "secondary_patterns": [
+        "Consolidation",
+        "Range"
+      ],
+      "volume_ratio": 1,
+      "resistance": [
+        "$117.00",
+        "$120.00"
+      ],
+      "support": [
+        "$113.00",
+        "$110.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $118",
+        "targets": [
+          "$125",
+          "$130"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $112",
+        "targets": [
+          "$107",
+          "$102"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "HOLD",
+      "stop_loss": "$111.00",
+      "key_risk": "Keytruda patent cliff approaching",
+      "confidence": "MEDIUM",
+      "rsi": 41,
+      "short_interest": 0.8,
+      "fifty_two_week_low": 99.5,
+      "fifty_two_week_high": 134.1
+    },
+    "ISRG": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Consolidation",
+      "pattern_narrative": "Below both 20-SMA ($491.78) and 50-SMA ($508.10) in consolidation around $475-485 range. Basing pattern formation.",
+      "secondary_patterns": [
+        "Base",
+        "Range"
+      ],
+      "volume_ratio": 1.4,
+      "resistance": [
+        "$485.00",
+        "$495.00"
+      ],
+      "support": [
+        "$470.00",
+        "$455.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $490",
+        "targets": [
+          "$510",
+          "$530"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $465",
+        "targets": [
+          "$445",
+          "$425"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "HOLD",
+      "stop_loss": "$465.00",
+      "key_risk": "Robotic surgery competition intensifying",
+      "confidence": "MEDIUM",
+      "rsi": 41,
+      "short_interest": 2.1,
+      "fifty_two_week_low": 255,
+      "fifty_two_week_high": 494.28
+    },
+    "JPM": {
+      "trend": "SIDEWAYS",
+      "primary_pattern": "Rectangle",
+      "pattern_narrative": "Below both 20-SMA ($293.83) and 50-SMA ($304.01) but holding support around $284-288. Rectangular consolidation pattern.",
+      "secondary_patterns": [
+        "Support Hold",
+        "Range"
+      ],
+      "volume_ratio": 1.7,
+      "resistance": [
+        "$291.00",
+        "$298.00"
+      ],
+      "support": [
+        "$284.00",
+        "$278.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $293",
+        "targets": [
+          "$305",
+          "$315"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $282",
+        "targets": [
+          "$270",
+          "$260"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "HOLD",
+      "stop_loss": "$280.00",
+      "key_risk": "Credit losses in economic slowdown",
+      "confidence": "MEDIUM",
+      "rsi": 39,
+      "short_interest": 0.5,
+      "fifty_two_week_low": 135.19,
+      "fifty_two_week_high": 248
+    },
+    "HD": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Falling Wedge",
+      "pattern_narrative": "Below both 20-SMA ($359.23) and 50-SMA ($371.45) in falling wedge pattern. Recent decline from $340+ continues.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Wedge"
+      ],
+      "volume_ratio": 1.5,
+      "resistance": [
+        "$335.00",
+        "$345.00"
+      ],
+      "support": [
+        "$324.00",
+        "$315.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $340",
+        "targets": [
+          "$355",
+          "$370"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $320",
+        "targets": [
+          "$305",
+          "$290"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$318.00",
+      "key_risk": "Housing market recession deepening",
+      "confidence": "HIGH",
+      "rsi": 26,
+      "short_interest": 1.8,
+      "fifty_two_week_low": 238.5,
+      "fifty_two_week_high": 423
+    },
+    "CAVA": {
+      "trend": "UPTREND",
+      "primary_pattern": "Pullback",
+      "pattern_narrative": "Above 20-SMA ($80.59) and well above 50-SMA ($72.19) but pulling back from $90+ highs. Uptrend intact with healthy pullback.",
+      "secondary_patterns": [
+        "Retracement",
+        "Support Test"
+      ],
+      "volume_ratio": 0.9,
+      "resistance": [
+        "$90.00",
+        "$95.00"
+      ],
+      "support": [
+        "$84.00",
+        "$80.00"
+      ],
+      "bullish_case": {
+        "trigger": "Hold above $85",
+        "targets": [
+          "$95",
+          "$105"
+        ],
+        "probability": "MEDIUM"
+      },
+      "bearish_case": {
+        "trigger": "Break below $80",
+        "targets": [
+          "$75",
+          "$68"
+        ],
+        "probability": "MEDIUM"
+      },
+      "action": "HOLD",
+      "stop_loss": "$78.00",
+      "key_risk": "Consumer discretionary spending cuts",
+      "confidence": "MEDIUM",
+      "rsi": 66,
+      "short_interest": 8.5,
+      "fifty_two_week_low": 31.5,
+      "fifty_two_week_high": 91.28
+    },
+    "AAPL": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Support Break",
+      "pattern_narrative": "Below both 20-SMA ($260.81) and 50-SMA ($261.35) with break below $249 support. Accelerating decline pattern confirmed.",
+      "secondary_patterns": [
+        "Breakdown",
+        "Lower Lows"
+      ],
+      "volume_ratio": 1.2,
+      "resistance": [
+        "$254.00",
+        "$260.00"
+      ],
+      "support": [
+        "$247.00",
+        "$240.00"
+      ],
+      "bullish_case": {
+        "trigger": "Reclaim above $255",
+        "targets": [
+          "$265",
+          "$275"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $245",
+        "targets": [
+          "$230",
+          "$215"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$243.00",
+      "key_risk": "China market share loss and iPhone weakness",
+      "confidence": "HIGH",
+      "rsi": 36,
+      "short_interest": 0.9,
+      "fifty_two_week_low": 164.08,
+      "fifty_two_week_high": 256
+    },
+    "SHOP": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Channel",
+      "pattern_narrative": "Below both 20-SMA ($125.29) and 50-SMA ($131.88) in descending channel. Recent rejection at $125 confirms downtrend.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Channel"
+      ],
+      "volume_ratio": 2.1,
+      "resistance": [
+        "$127.00",
+        "$133.00"
+      ],
+      "support": [
+        "$120.00",
+        "$115.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $130",
+        "targets": [
+          "$138",
+          "$145"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $119",
+        "targets": [
+          "$110",
+          "$100"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$117.00",
+      "key_risk": "E-commerce normalization and SMB pressure",
+      "confidence": "HIGH",
+      "rsi": 45,
+      "short_interest": 5.2,
+      "fifty_two_week_low": 48.56,
+      "fifty_two_week_high": 132.91
+    },
+    "RDDT": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Bear Flag",
+      "pattern_narrative": "Trading at 20-SMA ($142.27) but well below 50-SMA ($171.51). Bear flag formation around $138-142 suggests further decline.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Flag"
+      ],
+      "volume_ratio": 1.3,
+      "resistance": [
+        "$145.00",
+        "$152.00"
+      ],
+      "support": [
+        "$135.00",
+        "$125.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $148",
+        "targets": [
+          "$160",
+          "$175"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $135",
+        "targets": [
+          "$120",
+          "$105"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$133.00",
+      "key_risk": "Social media advertising market weakness",
+      "confidence": "HIGH",
+      "rsi": 41,
+      "short_interest": 11.8,
+      "fifty_two_week_low": 37.35,
+      "fifty_two_week_high": 147.37
+    },
+    "TWLO": {
+      "trend": "UPTREND",
+      "primary_pattern": "Ascending Triangle",
+      "pattern_narrative": "Above 20-SMA ($122.70) and 50-SMA ($121.93) in ascending triangle. Testing $128 resistance with improving momentum.",
+      "secondary_patterns": [
+        "Higher Lows",
+        "Breakout Setup"
+      ],
+      "volume_ratio": 0.9,
+      "resistance": [
+        "$128.00",
+        "$135.00"
+      ],
+      "support": [
+        "$125.00",
+        "$122.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $130",
+        "targets": [
+          "$140",
+          "$150"
+        ],
+        "probability": "HIGH"
+      },
+      "bearish_case": {
+        "trigger": "Break below $122",
+        "targets": [
+          "$115",
+          "$108"
+        ],
+        "probability": "LOW"
+      },
+      "action": "BUY",
+      "stop_loss": "$121.00",
+      "key_risk": "Customer concentration and competition",
+      "confidence": "HIGH",
+      "rsi": 58,
+      "short_interest": 7.9,
+      "fifty_two_week_low": 52.51,
+      "fifty_two_week_high": 130.01
+    },
+    "HOOD": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Descending Channel",
+      "pattern_narrative": "Below both 20-SMA ($76.83) and 50-SMA ($88.78) in descending channel. Recent decline from $77+ continues downward trend.",
+      "secondary_patterns": [
+        "Lower Highs",
+        "Channel"
+      ],
+      "volume_ratio": 0.9,
+      "resistance": [
+        "$77.00",
+        "$82.00"
+      ],
+      "support": [
+        "$71.00",
+        "$66.00"
+      ],
+      "bullish_case": {
+        "trigger": "Break above $78",
+        "targets": [
+          "$85",
+          "$92"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $70",
+        "targets": [
+          "$63",
+          "$56"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$69.00",
+      "key_risk": "Crypto volatility and reduced retail trading",
+      "confidence": "HIGH",
+      "rsi": 41,
+      "short_interest": 9.2,
+      "fifty_two_week_low": 8.42,
+      "fifty_two_week_high": 105
+    },
+    "QUBT": {
+      "trend": "DOWNTREND",
+      "primary_pattern": "Falling Knife",
+      "pattern_narrative": "Below both 20-SMA ($7.84) and 50-SMA ($9.33) in steep decline. Falling knife pattern with high volatility.",
+      "secondary_patterns": [
+        "Momentum Decline",
+        "Volatility"
+      ],
+      "volume_ratio": 1.6,
+      "resistance": [
+        "$7.60",
+        "$8.20"
+      ],
+      "support": [
+        "$6.80",
+        "$6.20"
+      ],
+      "bullish_case": {
+        "trigger": "Stabilize above $7.50",
+        "targets": [
+          "$8.50",
+          "$10.00"
+        ],
+        "probability": "LOW"
+      },
+      "bearish_case": {
+        "trigger": "Break below $6.80",
+        "targets": [
+          "$5.50",
+          "$4.50"
+        ],
+        "probability": "HIGH"
+      },
+      "action": "AVOID",
+      "stop_loss": "$6.50",
+      "key_risk": "Quantum computing commercialization uncertainty",
+      "confidence": "MEDIUM",
+      "rsi": 36,
+      "short_interest": 25.8,
+      "fifty_two_week_low": 4.8,
+      "fifty_two_week_high": 16.98
+    }
+  },
+  "generation_time_ms": 376851,
+  "token_usage": {
+    "input_tokens": 27131,
+    "output_tokens": 25436,
+    "cost": 0.462933
+  },
+  "stocks_covered": 38
+}

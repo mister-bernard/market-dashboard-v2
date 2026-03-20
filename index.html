@@ -161,6 +161,7 @@ table.wlt{width:100%;table-layout:auto;border-collapse:collapse;font-size:10px;f
 .mcard.mred{border-color:rgba(244,63,94,.25);}.mcard.mred h4{color:#f87171;}
 .mcard.mgrn{border-color:rgba(34,197,94,.2);}.mcard.mgrn h4{color:#4ade80;}
 .mcard.myel{border-color:rgba(251,191,36,.2);}.mcard.myel h4{color:#fcd34d;}
+.mcard.mblu{border-color:rgba(56,189,248,.25);}.mcard.mblu h4{color:#38bdf8;}
 /* OPTIONS */
 .ocard{background:var(--sf);border:1px solid var(--bd);border-radius:11px;padding:17px 19px;margin-bottom:12px;}
 .ohdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
@@ -530,16 +531,9 @@ table.wlt{width:100%;table-layout:auto;border-collapse:collapse;font-size:10px;f
 
 <!-- MACRO -->
 <div class="sec active" id="tab-macro">
-  <h2>Macro Context <span class="tag">IRAN WAR · STAGFLATION · FED</span></h2>
-  <div class="mgrid">
-    <div class="mcard mred"><div class="ico">🛢️</div><h4>Oil — WTI $95, Brent Above $100</h4><p>IEA 400M-barrel release failed. Brent above $100 for first time since Aug 2022. Iran Supreme Leader declared Hormuz "should remain closed permanently." Goldman revised oil forecasts higher. Physical crude in extreme backwardation ($14.20 premium for immediate delivery). U.S. Navy tanker escorts expected "by end of March" — single biggest de-escalation catalyst.</p></div>
-    <div class="mcard mred"><div class="ico">📊</div><h4>Inflation — PCE +0.4%, Storm Coming</h4><p>February CPI in-line (+0.3% MoM, +2.4% YoY) — entirely pre-war data. Gas prices up ~$0.60/gal (~20%) since conflict began. RSM projects March CPI at +0.6% MoM minimum, 3%+ YoY. PCE came in +0.3%/core +0.4%. Q2 GDP second estimate missed badly at +0.7% QoQ vs +1.4% prior — economy was weaker BEFORE the war started. Stagflation calculus worsening.</p></div>
-    <div class="mcard mred"><div class="ico">🏦</div><h4>Fed Trapped — Hold Mar 18 Certain</h4><p>Fed decision March 18 — nearly 100% odds of a hold. Question is Powell tone: does he signal cuts are dead for 2026? Private credit stress emerging — Morgan Stanley and Cliffwater capped redemptions. First Brands and MFS defaults. If contagion spreads, Fed faces forced cut at worst possible inflation moment. Every Powell word on March 18 will move markets sharply.</p></div>
-    <div class="mcard mgrn"><div class="ico">₿</div><h4>Bitcoin Decoupling — $70K+ Holds</h4><p>Bitcoin held above $70K through the worst week since October — showing remarkable decoupling from traditional risk assets. BTC is behaving as risk-off safe haven. U.S. is world's largest net oil exporter making BTC-ETF flows more correlated with U.S. macro strength than Middle East oil risk. Each VIX spike has coincided with a BTC floor. Monitor BTC as leading indicator for institutional risk appetite return.</p></div>
-    <div class="mcard mred"><div class="ico">🌏</div><h4>Global Contagion — Korea, UAE, Europe</h4><p>South Korea KOSPI plunged 12%+ in a single session — worst day in decades. Korea Exchange temporarily halted trading. Dubai/Abu Dhabi indexes -4.9% and -3%+ on reopening from Iranian drone closure. European shares headed for second straight weekly loss. Asia Pacific semiconductor supply chains now at risk — watch SK Hynix and TSMC for HBM/chip supply signals.</p></div>
-    <div class="mcard myel"><div class="ico">📡</div><h4>$SPXA200R — Breadth in Correction Zone</h4><p>% of S&P 500 stocks above 200-day MA estimated at 35-45% — well below the critical 50% bull/bear line. Key levels: 80%+ = healthy bull, 50-60% = neutral, 30-50% = correction zone (CURRENT), 20-30% = oversold/bear, below 20% = capitulation (seen during COVID, SVB, April 2025 tariff panic at ~4%). Not yet at capitulation. All bounces are tactical, not strategic until SPXA200R reclaims 50%.</p></div>
-    <div class="mcard myel"><div class="ico">📅</div><h4>Key Upcoming Catalysts</h4><p><strong style="color:var(--tx)">Mar 16-19:</strong> NVDA GTC 2026 — Jensen Huang keynote, Blackwell Ultra, Vera Rubin. <strong style="color:var(--tx)">Mar 18:</strong> Fed rate decision + Powell press conference. <strong style="color:var(--tx)">Mar 23:</strong> COHR joins S&P 500 — mechanical forced buying. <strong style="color:var(--tx)">Late Mar:</strong> U.S. Navy tanker escorts through Hormuz. <strong style="color:var(--tx)">Apr 23:</strong> AMZN earnings. <strong style="color:var(--tx)">May 11:</strong> PLTR earnings. <strong style="color:var(--tx)">May 13:</strong> COHR earnings. <strong style="color:var(--tx)">May 26:</strong> PANW earnings.</p></div>
-    <div class="mcard mred"><div class="ico">✈️</div><h4>Avoid: Airlines, Consumer, Industrials</h4><p>Gas pump prices up ~$0.60/gal (~20%) since conflict. Airline fares CPI could surge from 2.2% to ~20% (Goldman estimate). United CEO flagged "meaningful" Q1 impact. DAL, UAL, AAL structurally impaired until oil resolves. Norwegian, Carnival down significantly. Kohl's, Dollar General beat earnings but still face consumer fear. Avoid all consumer travel/leisure until WTI convincingly breaks $85.</p></div>
+  <h2>Macro Context <span class="tag" id="macro-tag">LOADING...</span></h2>
+  <div id="macro-cards-container" class="mgrid">
+    <!-- Macro cards will be populated dynamically from daily-content.json -->
   </div>
 </div>
 
@@ -1758,40 +1752,9 @@ function applyNarrative(n, today) {
   const hsub = document.getElementById('hsub');
   if (hsub) hsub.textContent = n.date_context || hsub.textContent;
 
-  // ── Macro tab cards — update the 8 existing cards ─────────────
-  const macroCards = document.querySelectorAll('.mcard');
-  if (macroCards.length >= 8) {
-    // Card 0: Oil
-    macroCards[0].querySelector('h4').textContent = 'Oil & Energy';
-    macroCards[0].querySelector('p').textContent = n.oil_theme || '';
-
-    // Card 1: Inflation/Macro
-    macroCards[1].querySelector('h4').textContent = 'Macro Conditions';
-    macroCards[1].querySelector('p').textContent = n.macro_subtext || '';
-
-    // Card 2: Fed/Rates
-    macroCards[2].querySelector('h4').textContent = 'Market Tone — ' + (n.action_bias || '');
-    macroCards[2].querySelector('p').textContent = n.spy_assessment || '';
-
-    // Card 3: Bitcoin
-    macroCards[3].querySelector('h4').textContent = 'Bitcoin';
-    macroCards[3].querySelector('p').textContent = n.btc_theme || '';
-
-    // Card 4: Global/Volatility
-    macroCards[4].querySelector('h4').textContent = 'Volatility Regime';
-    macroCards[4].querySelector('p').textContent = n.vix_assessment || '';
-
-    // Card 5: Breadth
-    // Leave SPXA200R unchanged — it's analysis that doesn't need updating
-
-    // Card 6: Catalysts — update with today's date and key levels
-    macroCards[6].querySelector('h4').textContent = 'Key Levels to Watch';
-    macroCards[6].querySelector('p').textContent = n.key_levels_to_watch || '';
-
-    // Card 7: Gold
-    macroCards[7].querySelector('h4').textContent = 'Gold';
-    macroCards[7].querySelector('p').textContent = n.gold_theme || '';
-  }
+  // ── Macro tab cards — this is narrative mode (not used with new macro_cards structure)
+  // The narrative refresh is deprecated in favor of daily-content.json macro_cards
+  // Keeping this section for backward compatibility but it won't populate new dynamic cards
 
   // ── Defense tab alert ─────────────────────────────────────────
   const defAlert = document.querySelector('#tab-defense .alert-r p');
@@ -1916,49 +1879,51 @@ function applyMacroContent(macro, regime) {
     macroH2.textContent = regime + ' · AI GENERATED';
   }
 
-  // Update the 8 macro cards: #tab-macro .mgrid .mcard
-  const macroCards = document.querySelectorAll('#tab-macro .mgrid .mcard');
-  if (macroCards.length < 8) return;
-
-  // Card 0: Oil
-  const c0h = macroCards[0].querySelector('h4');
-  const c0p = macroCards[0].querySelector('p');
-  if (c0h && macro.oil_theme) { c0h.textContent = 'Oil & Energy'; c0p.textContent = macro.oil_theme; }
-
-  // Card 1: Inflation/Macro
-  const c1h = macroCards[1].querySelector('h4');
-  const c1p = macroCards[1].querySelector('p');
-  if (c1h && macro.subtext) { c1h.textContent = 'Macro Conditions'; c1p.textContent = macro.subtext; }
-
-  // Card 2: Fed/Rates
-  const c2h = macroCards[2].querySelector('h4');
-  const c2p = macroCards[2].querySelector('p');
-  if (c2h && macro.fed_outlook) { c2h.textContent = 'Fed & Rates'; c2p.textContent = macro.fed_outlook; }
-
-  // Card 3: Bitcoin
-  const c3h = macroCards[3].querySelector('h4');
-  const c3p = macroCards[3].querySelector('p');
-  if (c3h && macro.btc_theme) { c3h.textContent = 'Bitcoin & Crypto'; c3p.textContent = macro.btc_theme; }
-
-  // Card 4: Global/Volatility
-  const c4h = macroCards[4].querySelector('h4');
-  const c4p = macroCards[4].querySelector('p');
-  if (c4h && macro.vix_assessment) { c4h.textContent = 'Volatility & Risk'; c4p.textContent = macro.vix_assessment; }
-
-  // Card 5: Breadth - update if headline/subtext available
-  const c5h = macroCards[5].querySelector('h4');
-  const c5p = macroCards[5].querySelector('p');
-  if (c5h && macro.headline) { c5h.textContent = macro.headline; c5p.textContent = macro.subtext || ''; }
-
-  // Card 6: Key Levels / Catalysts
-  const c6h = macroCards[6].querySelector('h4');
-  const c6p = macroCards[6].querySelector('p');
-  if (c6h && macro.key_levels) { c6h.textContent = 'Key Levels & Catalysts'; c6p.textContent = macro.key_levels; }
-
-  // Card 7: Avoid/Gold
-  const c7h = macroCards[7].querySelector('h4');
-  const c7p = macroCards[7].querySelector('p');
-  if (c7h && macro.gold_theme) { c7h.textContent = 'Gold & Safe Havens'; c7p.textContent = macro.gold_theme; }
+  // Populate dynamic macro cards from macro_cards array
+  const macroCardsContainer = document.getElementById('macro-cards-container');
+  const macroTag = document.getElementById('macro-tag');
+  
+  if (data.macro_cards && Array.isArray(data.macro_cards) && macroCardsContainer) {
+    // Clear existing cards
+    macroCardsContainer.innerHTML = '';
+    
+    // Update the tag with macro headline if available
+    if (macroTag && data.macro_headline) {
+      macroTag.textContent = data.macro_headline.toUpperCase();
+    }
+    
+    // Create a card for each macro_card entry
+    data.macro_cards.forEach(card => {
+      const mcardDiv = document.createElement('div');
+      
+      // Map sentiment to CSS class
+      const sentimentClass = {
+        'bullish': 'mgrn',
+        'bearish': 'mred',
+        'neutral': 'mblu',
+        'warning': 'myel'
+      }[card.sentiment] || 'mblu';
+      
+      mcardDiv.className = `mcard ${sentimentClass}`;
+      
+      mcardDiv.innerHTML = `
+        <div class="ico">${card.icon || '📊'}</div>
+        <h4>${card.title || ''}</h4>
+        <p>${card.body || ''}</p>
+      `;
+      
+      macroCardsContainer.appendChild(mcardDiv);
+    });
+  } else if (macro && macroCardsContainer) {
+    // Fallback to old macro structure if macro_cards not present
+    macroCardsContainer.innerHTML = `
+      <div class="mcard mblu">
+        <div class="ico">📊</div>
+        <h4>${macro.headline || 'Market Update'}</h4>
+        <p>${macro.subtext || ''}</p>
+      </div>
+    `;
+  }
 }
 
 function applyStockTheses(theses) {
