@@ -979,7 +979,8 @@ async function fetchFuturesREST(){
   setTimeout(fetchFuturesREST,60000);
 }
 
-const WORKER='https://mrb.sh/market-api';
+// Override at deploy time: replace this URL with wherever you've hosted server.js.
+const WORKER=(window.MARKET_API_URL||document.querySelector('meta[name="market-api-url"]')?.content||'https://your-api-host.example.com');
 const AI_WORKER='https://market-dashboard-ai.ambermlysak.workers.dev';
 // --- YAHOO FINANCE API (no CORS, no key needed) ------------------
 async function yahooQuote(sym){

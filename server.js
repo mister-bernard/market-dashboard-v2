@@ -5,9 +5,11 @@ const alpaca = require('./alpaca');
 const yahoo = require('./yahoo');
 
 const PORT = parseInt(process.env.PORT || '3010', 10);
+// Comma-separated list of additional allowed CORS origins (e.g. your frontend host).
+const EXTRA_ORIGINS = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
 const ALLOWED_ORIGINS = [
   'https://ambermlysak.github.io',
-  'https://mrb.sh',
+  ...EXTRA_ORIGINS,
 ];
 
 const app = express();
